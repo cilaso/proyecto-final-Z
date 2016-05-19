@@ -21,10 +21,6 @@
         echo '<br>';
         ?>
 
-        <form action="../controlador/imagen.php" method="POST" enctype="multipart/form-data" >
-            <label for="imagen">Imagen: </label><input type="file" name="imagen" id="imagen">
-            <input type="submit">
-        </form>
 
         <div id="cabecera"> <!--LOGO Y COSAS CHULAS-->
             <ul id="mainMenu"> <!--MENU DE ARRIBA TIPICO DE TODAS LAS WEBS-->

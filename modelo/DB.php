@@ -19,10 +19,10 @@ function registrarUsuario($mysqli, $username, $password, $nombre, $apellidos, $c
     return $resultado;
 }
 
-function registrarUsuarioConImagen($mysqli, $username, $password, $nombre, $apellidos, $correo, $fecha_nacimiento, $imagen_subida, $tipo) {
-
-    $resultado = $mysqli->query("INSERT INTO usuario VALUES('$username', '$password', '$nombre', '$apellidos', '$correo', now(), '$fecha_nacimiento', '$imagen_subida', '$tipo');");
-
+function registrarUsuarioConImagen($mysqli, $username, $password, $nombre, $apellidos, $correo, $fecha_nacimiento, $nombre_imagen){ 
+    
+    $resultado = $mysqli->query("INSERT INTO usuario VALUES('$username', '$password', '$nombre', '$apellidos', '$correo', now(), '$fecha_nacimiento', '$nombre_imagen');");
+    
     return $resultado;
 }
 
@@ -51,6 +51,7 @@ function usuarioConImagen($mysqli, $username) {
     } else {
         return "VACIA";
     }
+
 }
 
 /* FUNCIONES DE REGISTRO HILO O RELACIONADAS CON HILOS */
@@ -62,10 +63,10 @@ function crearHilo($mysqli, $asunto, $categoria, $descripcion, $admin) {
     return $resultado;
 }
 
-function crearHiloConImagen($mysqli, $asunto, $categoria, $descripcion, $admin, $data, $tipo) {
-
-    $resultado = $mysqli->query("INSERT INTO hilo (asunto,admin,categoria,descripcion,fecha_creacion,likes, imagen, imagen_tipo) VALUES('$asunto', '$admin', '$categoria', '$descripcion', now(), 0 , '$data', '$tipo');");
-
+function crearHiloConImagen($mysqli, $asunto, $categoria, $descripcion, $admin, $nombre_imagen){ 
+      
+    $resultado = $mysqli->query("INSERT INTO hilo (asunto,admin,categoria,descripcion,fecha_creacion,likes,ruta_imagen) VALUES('$asunto', '$admin', '$categoria', '$descripcion', now(), 0 , '$nombre_imagen');");
+    
     return $resultado;
 }
 
@@ -142,7 +143,16 @@ function insertarMensaje($mysqli, $remitente, $id_hilo, $mensaje) {
     return $resultado;
 }
 
-function pedirMensajes($mysqli, $id_hilo) { //devuelve los mensajes del hilo con id que le pases
+function insertarMensajeConImagen($mysqli, $remitente, $id_hilo, $mensaje, $nombre_imagen){ 
+      
+    $resultado = $mysqli->query("INSERT INTO mensaje (remitente, fecha_insercion, id_hilo_perteneciente, mensaje , ruta_imagen) VALUES('$remitente', now(), '$id_hilo', '$mensaje' , '$nombre_imagen');");
+    
+    return $resultado;
+}
+
+function pedirMensajes($mysqli, $id_hilo){ //devuelve los mensajes del hilo con id que le pases
+      
+
     $resultado = $mysqli->query("SELECT * FROM mensaje WHERE id_hilo_perteneciente = '$id_hilo'");
 
     return $resultado;

@@ -20,13 +20,12 @@ if (isset($_SESSION['username'])) { //sesion iniciada
     if (!isset($_SESSION['ruta'])) {
         header('Location: ../controlador/main.php?origen=consultarImagen');
     } else {
-        echo "<img src='/opt/lampp/htdocs/proyectoZ/uploads/" . $_SESSION['ruta'] . "' />";
+        echo "<img src='../uploads/" . $_SESSION['ruta'] . "' />";
     }
 } else { //sesion no iniciada
     if (isset($_SESSION['usuarioIncorrecto'])) {
         echo 'USUARIO O PASSWORD INCORRECTO';
     }
-
 
     echo('iniciar sesion:');
     echo('<br>');
