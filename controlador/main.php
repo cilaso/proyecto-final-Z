@@ -8,6 +8,33 @@ $origen = $_REQUEST['origen'];
 
 switch ($origen){
     
+        case "pedir_hilos":
+            
+            $hiloFav = pedirHilosFavoritos($mysqli);
+            
+            $hiloNow = pedirHilosRecientes($mysqli);
+            
+            $_SESSION['hiloFav'] = $hiloFav;
+            $_SESSION['hiloNow'] = $hiloNow;
+            $_SESSION['hilosPedidos'] = true;
+            
+            header("Location: ../vista/index.php");
+            
+            break;
+        
+        case "pedir_mis_fav":
+            
+            $username = $_SESSION['username'];
+            
+            $misFavs = pedirMisFav($mysqli, $username);
+            
+            $_SESSION['misFavs'] = $misFavs;
+            $_SESSION['misFavPedidos'] = true;
+            
+            header("Location: ../vista/favoritos.php");
+            
+            break;
+    
         case "login":
             
             $username = $_REQUEST['username'];
@@ -47,6 +74,17 @@ switch ($origen){
             $id_mensaje = $_REQUEST['id_mensaje'];
             borrarMensaje($mysqli, $id_mensaje);
             header('Location: ../vista/hilo.php');
+            break;
+        
+        case "marcarFav":
+            
+            $id_hilo = $_REQUEST['id_hilo'];
+            $username = $_SESSION['username'];
+            
+            marcarHiloFavorito($mysqli, $username, $id_hilo);
+            
+            header('Location: ../vista/hilo.php');
+            
             break;
         
         case "consultarImagen":
