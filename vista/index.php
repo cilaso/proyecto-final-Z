@@ -15,11 +15,6 @@
         echo "La fecha actual es " . date("d") . " del " . date("m") . " de " . date("Y"); echo '<br>';       
         ?>
 
-        <form action="../controlador/imagen.php" method="POST" enctype="multipart/form-data" >
-            <label for="imagen">Imagen: </label><input type="file" name="imagen" id="imagen">
-            <input type="submit">
-        </form>
-
         <div id="cabeceraIndex"> <!--LOGO Y BOTONES DE LOGIN-->
             <ul id="mainMenu"> <!--MENU DE ARRIBA TIPICO DE TODAS LAS WEBS-->
                 <li>Inicio</li>

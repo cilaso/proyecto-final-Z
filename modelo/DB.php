@@ -1,7 +1,7 @@
 <?php
 //CONEXION CON LA BASE DE DATOS 
-$mysqli = new mysqli("192.168.1.177", "tony", "tony", "foro_db");  // PC SOAINT TONY
-//$mysqli = new mysqli("192.168.1.146", "root", "root", "foro_db");    // PC SOAINT SERGIO
+//$mysqli = new mysqli("192.168.1.177", "tony", "tony", "foro_db");  // PC SOAINT TONY
+$mysqli = new mysqli("192.168.1.146", "root", "root", "foro_db");    // PC SOAINT SERGIO
 //$mysqli = new mysqli("192.168.1.238", "root", "root", "foro_db");  // PC CASA SERGIO
 
 
@@ -17,9 +17,9 @@ function registrarUsuario($mysqli, $username, $password, $nombre, $apellidos, $c
     return $resultado;
 }
 
-function registrarUsuarioConImagen($mysqli, $username, $password, $nombre, $apellidos, $correo, $fecha_nacimiento, $imagen_subida , $tipo){ 
+function registrarUsuarioConImagen($mysqli, $username, $password, $nombre, $apellidos, $correo, $fecha_nacimiento, $nombre_imagen){ 
     
-    $resultado = $mysqli->query("INSERT INTO usuario VALUES('$username', '$password', '$nombre', '$apellidos', '$correo', now(), '$fecha_nacimiento', '$imagen_subida', '$tipo');");
+    $resultado = $mysqli->query("INSERT INTO usuario VALUES('$username', '$password', '$nombre', '$apellidos', '$correo', now(), '$fecha_nacimiento', '$nombre_imagen');");
     
     return $resultado;
 }
@@ -46,13 +46,10 @@ function usuarioConImagen($mysqli,$username){
         
         $ruta_imagen = mysqli_fetch_array($resultado);
         return $ruta_imagen[0];
-        var_dump($ruta_imagen[0]);
-        die();
         
     }else{       
         return "VACIA";
     }
-    
     
 }
 
@@ -64,9 +61,9 @@ function crearHilo($mysqli, $asunto, $categoria, $descripcion, $admin){
     return $resultado;
 }
 
-function crearHiloConImagen($mysqli, $asunto, $categoria, $descripcion, $admin, $data, $tipo){ 
+function crearHiloConImagen($mysqli, $asunto, $categoria, $descripcion, $admin, $nombre_imagen){ 
       
-    $resultado = $mysqli->query("INSERT INTO hilo (asunto,admin,categoria,descripcion,fecha_creacion,likes, imagen, imagen_tipo) VALUES('$asunto', '$admin', '$categoria', '$descripcion', now(), 0 , '$data', '$tipo');");
+    $resultado = $mysqli->query("INSERT INTO hilo (asunto,admin,categoria,descripcion,fecha_creacion,likes,ruta_imagen) VALUES('$asunto', '$admin', '$categoria', '$descripcion', now(), 0 , '$nombre_imagen');");
     
     return $resultado;
 }
@@ -96,6 +93,13 @@ function pedirHilosFavoritos($mysqli){ //hilos ordenador por numero de likes
 function insertarMensaje($mysqli, $remitente, $id_hilo, $mensaje){ 
       
     $resultado = $mysqli->query("INSERT INTO mensaje (remitente, fecha_insercion, id_hilo_perteneciente, mensaje) VALUES('$remitente', now(), '$id_hilo', '$mensaje');");
+    
+    return $resultado;
+}
+
+function insertarMensajeConImagen($mysqli, $remitente, $id_hilo, $mensaje, $nombre_imagen){ 
+      
+    $resultado = $mysqli->query("INSERT INTO mensaje (remitente, fecha_insercion, id_hilo_perteneciente, mensaje , ruta_imagen) VALUES('$remitente', now(), '$id_hilo', '$mensaje' , '$nombre_imagen');");
     
     return $resultado;
 }
