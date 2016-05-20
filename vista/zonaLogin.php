@@ -17,11 +17,21 @@ if (isset($_SESSION['username'])) { //sesion iniciada
     echo ('<input type="submit" value="Crear hilo">');
     echo ('</form>');
     
+    echo ('<form action="miPerfil.php" method="POST">');
+    echo ('<input type="submit" value="Mi perfil">');
+    echo ('</form>');
+    
     if (!isset($_SESSION['ruta'])) {
-        header('Location: ../controlador/main.php?origen=consultarImagen');
+        
+        header('Location: ../controlador/main.php?origen=consultarImagen');    
+        
+        
     } else {
+        
         echo "<img src='../uploads/" . $_SESSION['ruta'] . "' />";
+        
     }
+    
 } else { //sesion no iniciada
     if (isset($_SESSION['usuarioIncorrecto'])) {
         echo 'USUARIO O PASSWORD INCORRECTO';

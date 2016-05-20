@@ -12,10 +12,10 @@ and open the template in the editor.
     <body>
         <div id="cabecera"> <!--LOGO Y COSAS CHULAS-->
             <ul id="mainMenu"> <!--MENU DE ARRIBA TIPICO DE TODAS LAS WEBS-->
-                <li>Inicio</li>
-                <li>Favoritos</li>
-                <li>Mis hilos</li>
-                <li>Buscar hilos</li>
+                <li><a href="index.php">Inicio</a></li>
+                <li><a href="favoritos.php">Favoritos</a></li>
+                <li><a href="misHilos.php">Mis hilos</a></li>
+                <li><a href="buscarHilos.php">Buscar hilos</a></li>
             </ul>
 
             <!--PARTE DE ARRIBA A LA DERECHA TIPICA DE TODAS LAS WEBS CON LAS OPCIONES-->
@@ -45,6 +45,8 @@ and open the template in the editor.
                     <th>Creador</th>
                 </tr>
                 <?php
+                
+                
                 foreach ($hiloFav as $filaFav) {
 
                     echo("<td>'$filaFav[3]'</td>");
@@ -54,7 +56,12 @@ and open the template in the editor.
                     echo("<td>'$filaFav[6]'</td>");
                     echo("<td>'$filaFav[2]'</td>");
                     echo('<td><a href="hilo.php?id_hilo=' . $filaFav[0] . '">Ir</a></td>');
-
+                    echo ('<td>');
+                    echo ('<form action="../controlador/main.php?origen=desmarcarFav" method="POST">');
+                    echo ("<input type='hidden' name='id_hilo' value=" . $filaFav[0] . ">");
+                    echo ("<input type='submit' value='Desmarcar de favoritos'>");
+                    echo("</form>");
+                    echo ('</td>');
                     echo("</tr>");
                 }
 

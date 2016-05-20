@@ -19,10 +19,10 @@ function registrarUsuario($mysqli, $username, $password, $nombre, $apellidos, $c
     return $resultado;
 }
 
-function registrarUsuarioConImagen($mysqli, $username, $password, $nombre, $apellidos, $correo, $fecha_nacimiento, $nombre_imagen){ 
-    
+function registrarUsuarioConImagen($mysqli, $username, $password, $nombre, $apellidos, $correo, $fecha_nacimiento, $nombre_imagen) {
+
     $resultado = $mysqli->query("INSERT INTO usuario VALUES('$username', '$password', '$nombre', '$apellidos', '$correo', now(), '$fecha_nacimiento', '$nombre_imagen');");
-    
+
     return $resultado;
 }
 
@@ -43,15 +43,13 @@ function usuarioConImagen($mysqli, $username) {
 
     $resultado = $mysqli->query("SELECT ruta_imagen FROM usuario WHERE username = '$username' ");
 
-    if ($resultado->num_rows > 0) {
+    $ruta_imagen = mysqli_fetch_array($resultado);
 
-        $ruta_imagen = mysqli_fetch_array($resultado);
-        return $ruta_imagen[0];
-        
+    if ($ruta_imagen[0] == NULL) {
+        return "no-avatar.png";
     } else {
-        return "VACIA";
+        return $ruta_imagen[0];
     }
-
 }
 
 /* FUNCIONES DE REGISTRO HILO O RELACIONADAS CON HILOS */
@@ -63,10 +61,10 @@ function crearHilo($mysqli, $asunto, $categoria, $descripcion, $admin) {
     return $resultado;
 }
 
-function crearHiloConImagen($mysqli, $asunto, $categoria, $descripcion, $admin, $nombre_imagen){ 
-      
+function crearHiloConImagen($mysqli, $asunto, $categoria, $descripcion, $admin, $nombre_imagen) {
+
     $resultado = $mysqli->query("INSERT INTO hilo (asunto,admin,categoria,descripcion,fecha_creacion,likes,ruta_imagen) VALUES('$asunto', '$admin', '$categoria', '$descripcion', now(), 0 , '$nombre_imagen');");
-    
+
     return $resultado;
 }
 
@@ -111,27 +109,41 @@ function pedirMisFav($mysqli, $username) { //hilos marcados por mi como favorito
 
         $hilosFav[] = $idFav[0];
     }
-    
+
     $misFavs = array();
-    
+
     foreach ($hilosFav as $id_hilo) {
-        
+
         $resul = $mysqli->query("SELECT * FROM hilo where id_hilo = '$id_hilo';");
-        
-        mysqli_fetch_array($resul,MYSQLI_BOTH);
-        
-        
-        var_dump($resul);
-        
-        $misFavs[] = $resul;
-        
+
+        $fav = mysqli_fetch_array($resul, MYSQLI_BOTH);
+
+
+        $misFavs[] = $fav;
     }
 
     return $misFavs;
 }
 
+function pedirMisHilos($mysqli, $username) { //hilos ordenador por numero de likes
+    $misHilos = $mysqli->query("SELECT * FROM hilo where admin = '$username';");
+
+    $hilo = array();
+
+    while ($filaFav = mysqli_fetch_array($misHilos, MYSQLI_BOTH)) {
+
+        $hilo[] = $filaFav;
+    }
+
+    return $hilo;
+}
+
 function marcarHiloFavorito($mysqli, $username, $id_hilo) { //marcas un hilo como favorito tuyo
     $mysqli->query("insert into favorito values ('$username', '$id_hilo');");
+}
+
+function desmarcarHiloFavorito($mysqli, $username, $id_hilo) { //marcas un hilo como favorito tuyo
+    $mysqli->query("delete from favorito where username = '$username' and id_hilo = '$id_hilo'");
 }
 
 /* FUNCIONES DE INSERTAR MENSAJE O RELACIONADAS CON LOS MENSAJES */
@@ -143,16 +155,14 @@ function insertarMensaje($mysqli, $remitente, $id_hilo, $mensaje) {
     return $resultado;
 }
 
-function insertarMensajeConImagen($mysqli, $remitente, $id_hilo, $mensaje, $nombre_imagen){ 
-      
+function insertarMensajeConImagen($mysqli, $remitente, $id_hilo, $mensaje, $nombre_imagen) {
+
     $resultado = $mysqli->query("INSERT INTO mensaje (remitente, fecha_insercion, id_hilo_perteneciente, mensaje , ruta_imagen) VALUES('$remitente', now(), '$id_hilo', '$mensaje' , '$nombre_imagen');");
-    
+
     return $resultado;
 }
 
-function pedirMensajes($mysqli, $id_hilo){ //devuelve los mensajes del hilo con id que le pases
-      
-
+function pedirMensajes($mysqli, $id_hilo) { //devuelve los mensajes del hilo con id que le pases
     $resultado = $mysqli->query("SELECT * FROM mensaje WHERE id_hilo_perteneciente = '$id_hilo'");
 
     return $resultado;

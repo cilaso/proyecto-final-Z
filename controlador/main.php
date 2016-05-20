@@ -34,6 +34,19 @@ switch ($origen) {
         header("Location: ../vista/favoritos.php");
 
         break;
+    
+    case "pedir_mis_hilos":
+
+        $username = $_SESSION['username'];
+
+        $misHilos = pedirMisHilos($mysqli, $username);
+
+        $_SESSION['misHilos'] = $misHilos;
+        $_SESSION['misHilosPedidos'] = true;
+
+        header("Location: ../vista/misHilos.php");
+
+        break;
 
    case "login":
 
@@ -70,12 +83,15 @@ switch ($origen) {
         header('Location: ../vista/hilo.php');
 
         break;
-
-    case "consultarImagen":
-
-        $ruta = usuarioConImagen($mysqli, $_SESSION['username']);
-        $_SESSION['ruta'] = $ruta;
-        header("Location: ../../" . $_SESSION['url'] . "");
+    
+    case "desmarcarFav":
+        
+        $id_hilo = $_REQUEST['id_hilo'];
+        
+        desmarcarHiloFavorito ($mysqli, $_SESSION['username'], $id_hilo);
+        
+        header('Location: ../vista/favoritos.php');
+        
         break;
 
     case "desconect":

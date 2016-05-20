@@ -17,13 +17,17 @@ and open the template in the editor.
     session_start();
 
 
-    if (isset($_SESSION['id_hilo'])) {
-        $id_hilo = $_SESSION['id_hilo'];
-    } else {
+
+    if(isset($_REQUEST['id_hilo'])){
+        
         $id_hilo = $_REQUEST['id_hilo'];
         $_SESSION['id_hilo'] = $id_hilo;
+    }else{
+        $id_hilo = $_SESSION['id_hilo'];
     }
-
+    
+    
+    
     $resultadoHilo = pedirHiloPorId($mysqli, $id_hilo);
 
     $resultadoHilo = pedirHiloPorId($mysqli, $id_hilo); //informacion del hilo actual
@@ -41,20 +45,19 @@ and open the template in the editor.
     ?>
 
     <div id="cabecera"> <!--LOGO Y COSAS CHULAS-->
-        <ul id="mainMenu"> <!--MENU DE ARRIBA TIPICO DE TODAS LAS WEBS-->
-            <li>Inicio</li>
-            <li>Favoritos</li>
-            <li>Mis hilos</li>
-            <li>Buscar hilos</li>
-        </ul>
+            <ul id="mainMenu"> <!--MENU DE ARRIBA TIPICO DE TODAS LAS WEBS-->
+                <li><a href="index.php">Inicio</a></li>
+                <li><a href="favoritos.php">Favoritos</a></li>
+                <li><a href="misHilos.php">Mis hilos</a></li>
+                <li><a href="buscarHilos.php">Buscar hilos</a></li>
+            </ul>
 
-        <!--PARTE DE ARRIBA A LA DERECHA TIPICA DE TODAS LAS WEBS CON LAS OPCIONES-->
-        <?php
-        include ("zonaLogin.php");
-        ?>
+            <!--PARTE DE ARRIBA A LA DERECHA TIPICA DE TODAS LAS WEBS CON LAS OPCIONES-->
+            <?php
+            include ("zonaLogin.php");
+            ?>
 
-
-    </div>
+        </div>
 
     <div id='hilo' style="border:2px solid black;">
         Nombre: <?php echo $hilo[1]; ?> <br>
@@ -66,8 +69,14 @@ and open the template in the editor.
         <?php
         if (isset($_SESSION['username'])) {
             echo ('<form action="../controlador/main.php?origen=marcarFav" method="POST">');
-            echo ("<input type='hidden' name='id_hilo' value=" . $hilo[0] . ">");
+            echo ("<input type='hidden' name='id_hilo' value=\"" . $hilo[0] . "\">");
             echo ("<input type='submit' value='marcar como favorito'>");
+            echo("</form>");
+            
+            echo "ESTO AUN NO FUNCIONA";
+            echo ('<form action="../controlador/main.php?origen=darLike" method="POST">');
+            echo ("<input type='hidden' name='id_hilo' value=" . $hilo[0] . ">");
+            echo ("<input type='submit' value='Like!'>");
             echo("</form>");
         }
         ?>
