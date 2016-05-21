@@ -1,0 +1,85 @@
+/*
+arte y cultura
+ciencia y tecnologia
+deportes
+economía y finanzas
+educación
+empresas y negocios
+entretenimientos
+gobierno y sociedad
+información general
+informática e internet
+*/ 
+/* 
+    Created on : 21-may-2016, 3:24:59
+    Author     : Sergio
+*/
+.contenedor{
+    border: 1px solid black;
+    padding:  2%;
+    background-color: #CCC;
+    margin-top: 1%;
+}
+#zonaLoginCon{
+    width: 100%;
+    height: 20%;
+    background-color: green;
+    margin: 0;
+    padding: 0;
+}
+#zonaLoginDesc{
+    width: 100%;
+    height: 20%;
+    background-color: yellow;
+}
+.campos{
+    width: 100%;
+    text-align: center;
+}
+input[type="text"],input[type="password"]{
+    letter-spacing: 2px;
+}
+#mainMenu{
+    background-color: red;
+}
+.divFoto{
+    border: 1px solid grey;
+    background-color: white;
+}
+.col-md-5{
+    padding-left: 0%;
+    padding-right: 0%;
+}
+.fotoPerfil{
+    width: 100%;
+    height: 100%;
+
+    /* border-radius: 100%; */
+
+}
+.boton{
+    border: 1px solid grey;
+    list-style: none;
+    padding: 0.5%;
+    /*width: 25%;*/
+    text-align: center;
+    font-size: 1.2em;
+    letter-spacing: 1px;
+
+}
+.boton:hover{
+    opacity: 0.9;
+    background-color: pink;
+}
+.boton:hover a{
+    color: red;
+}
+.boton a{
+    color: white;
+}
+.boton a:hover{
+    text-decoration: none;
+}
+.row{
+    -webkit-padding-start: 0; 
+}

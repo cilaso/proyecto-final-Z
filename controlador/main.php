@@ -34,7 +34,7 @@ switch ($origen) {
         header("Location: ../vista/favoritos.php");
 
         break;
-    
+
     case "pedir_mis_hilos":
 
         $username = $_SESSION['username'];
@@ -48,7 +48,7 @@ switch ($origen) {
 
         break;
 
-   case "login":
+    case "login":
 
         $username = $_REQUEST['username'];
         $password = $_REQUEST['password'];
@@ -66,6 +66,7 @@ switch ($origen) {
             header("Location: ../../" . $_SESSION['url'] . "");
         }
         break;
+
     case "insertarMensaje":
         $mensaje = $_REQUEST['comentario'];
         $id_hilo = $_REQUEST['id_hilo'];
@@ -74,24 +75,17 @@ switch ($origen) {
         break;
 
     case "marcarFav":
-
         $id_hilo = $_REQUEST['id_hilo'];
         $username = $_SESSION['username'];
-
         marcarHiloFavorito($mysqli, $username, $id_hilo);
-
         header('Location: ../vista/hilo.php');
-
         break;
-    
+
     case "desmarcarFav":
-        
+
         $id_hilo = $_REQUEST['id_hilo'];
-        
-        desmarcarHiloFavorito ($mysqli, $_SESSION['username'], $id_hilo);
-        
+        desmarcarHiloFavorito($mysqli, $_SESSION['username'], $id_hilo);
         header('Location: ../vista/favoritos.php');
-        
         break;
 
     case "desconect":
@@ -105,7 +99,7 @@ switch ($origen) {
 
     case "consultarImagen":
         $ruta = usuarioConImagen($mysqli, $_SESSION['username']);
-        $_SESSION['ruta'] = $ruta;
+        $_SESSION['rutaImagen'] = $ruta;
         header("Location: ../../" . $_SESSION['url'] . "");
         break;
 
@@ -129,11 +123,11 @@ switch ($origen) {
             $resultado = crearHilo($mysqli, $asunto, $categoria, $descripcion, $admin);
 
             if ($resultado) {
-                $mensaje = "Se ha publicado el hilo éxito";
-                header('Location: ../vista/index.php?mensaje=$mensaje');
+                  $_SESSION['usuarioRegistrado'] = "Se ha publicado el hilo éxito";
+                header('Location: ../vista/index.php');
             } else {
-                $mensaje = 'Se ha producido un error al publicar el hilo';
-                header('Location: ../vista/index.php?mensaje=$mensaje');
+                  $_SESSION['usuarioRegistrado'] = 'Se ha producido un error al publicar el hilo';
+                header('Location: ../vista/index.php');
             }
         } else {
 
@@ -144,7 +138,7 @@ switch ($origen) {
 
             if (in_array($_FILES['imagen']['type'], $permitidos) && $_FILES['imagen']['size'] <= $limite_kb * 1024) {
 
-                $dir_destino = '/opt/lampp/htdocs/proyectoZ/uploads/';
+                $dir_destino = '/opt/lampp/htdocs/projectoZ/uploads/';
                 $nombre_imagen = date("d") . date("m") . date("Y") . date("H") . date("i") . basename($_FILES['imagen']['name']);
                 $imagen_subida = $dir_destino . $nombre_imagen;
 
@@ -152,11 +146,9 @@ switch ($origen) {
                     if (move_uploaded_file($_FILES['imagen']['tmp_name'], $imagen_subida)) {
 
                         $resultado = crearHiloConImagen($mysqli, $asunto, $categoria, $descripcion, $admin, $nombre_imagen);
-                        //echo "<img src='http://localhost/foro/uploads/". basename($imagen_subida) ."' />";
                     }
                 } else {
-                    echo "Posible ataque del archivo subido: ";
-                    echo "nombre del archivo '" . $_FILES['imagen']['tmp_name'] . "'.";
+                     $_SESSION['usuarioRegistrado'] = "Posible ataque del archivo subido: nombre del archivo '" . $_FILES['imagen']['tmp_name'] . "'. ";
                 }
 
                 if ($resultado) {
@@ -169,13 +161,12 @@ switch ($origen) {
                     header('Location: ../vista/index.php');
                 }
             } else {
-                echo "Archivo no permitido, es tipo de archivo prohibido o excede el tamano de $limite_kb Kilobytes";
+                $_SESSION['usuarioRegistrado'] =  "Archivo no permitido, es tipo de archivo prohibido o excede el tamano de $limite_kb Kilobytes";
             }
         }
 
         break;
 
-    default :
-
-        echo 'ERROR EN LA VARIABLE ORIGEN';
+    default:
+        $_SESSION['usuarioRegistrado'] = 'ERROR EN LA VARIABLE ORIGEN';
 }

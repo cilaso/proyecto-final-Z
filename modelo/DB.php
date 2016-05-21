@@ -1,9 +1,9 @@
 <?php
 
 //CONEXION CON LA BASE DE DATOS 
-$mysqli = new mysqli("192.168.1.177", "tony", "tony", "foro_db");  // PC SOAINT TONY
+//$mysqli = new mysqli("192.168.1.177", "tony", "tony", "foro_db");  // PC SOAINT TONY
 //$mysqli = new mysqli("192.168.1.146", "root", "root", "foro_db");    // PC SOAINT SERGIO
-//$mysqli = new mysqli("192.168.1.238", "root", "root", "foro_db");  // PC CASA SERGIO
+$mysqli = new mysqli("192.168.1.238", "root", "root", "foro_db");  // PC CASA SERGIO
 
 
 if ($mysqli->connect_errno) {
@@ -34,6 +34,7 @@ function pedirUsuarios($mysqli) {
 }
 
 function comprobarUsuario($mysqli, $username, $password) { //devuelve los usuarios con ese username y password
+    
     $resultado = $mysqli->query("SELECT * FROM usuario WHERE username = '$username' AND contrasenia = '$password'");
 
     return $resultado;
@@ -41,7 +42,7 @@ function comprobarUsuario($mysqli, $username, $password) { //devuelve los usuari
 
 function usuarioConImagen($mysqli, $username) {
 
-    $resultado = $mysqli->query("SELECT ruta_imagen FROM usuario WHERE username = '$username' ");
+    $resultado = $mysqli->query("SELECT nombre_imagen FROM usuario WHERE username = '$username' ");
 
     $ruta_imagen = mysqli_fetch_array($resultado);
 
@@ -63,7 +64,7 @@ function crearHilo($mysqli, $asunto, $categoria, $descripcion, $admin) {
 
 function crearHiloConImagen($mysqli, $asunto, $categoria, $descripcion, $admin, $nombre_imagen) {
 
-    $resultado = $mysqli->query("INSERT INTO hilo (asunto,admin,categoria,descripcion,fecha_creacion,likes,ruta_imagen) VALUES('$asunto', '$admin', '$categoria', '$descripcion', now(), 0 , '$nombre_imagen');");
+    $resultado = $mysqli->query("INSERT INTO hilo (asunto,admin,categoria,descripcion,fecha_creacion,likes, nombre_imagen) VALUES('$asunto', '$admin', '$categoria', '$descripcion', now(), 0 , '$nombre_imagen');");
 
     return $resultado;
 }
@@ -157,7 +158,7 @@ function insertarMensaje($mysqli, $remitente, $id_hilo, $mensaje) {
 
 function insertarMensajeConImagen($mysqli, $remitente, $id_hilo, $mensaje, $nombre_imagen) {
 
-    $resultado = $mysqli->query("INSERT INTO mensaje (remitente, fecha_insercion, id_hilo_perteneciente, mensaje , ruta_imagen) VALUES('$remitente', now(), '$id_hilo', '$mensaje' , '$nombre_imagen');");
+    $resultado = $mysqli->query("INSERT INTO mensaje (remitente, fecha_insercion, id_hilo_perteneciente, mensaje , nombre_imagen) VALUES('$remitente', now(), '$id_hilo', '$mensaje' , '$nombre_imagen');");
 
     return $resultado;
 }
