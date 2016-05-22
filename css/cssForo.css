@@ -14,16 +14,21 @@ informática e internet
     Created on : 21-may-2016, 3:24:59
     Author     : Sergio
 */
+
+/* Contenedor Principal*/
 .contenedor{
     border: 1px solid black;
-    padding:  2%;
+    padding:  0.2%;
     background-color: #CCC;
     margin-top: 1%;
+    margin-bottom:  1%;
 }
+
+/* Zona Usuario */
 #zonaLoginCon{
     width: 100%;
     height: 20%;
-    background-color: green;
+    background-color: #dedede;
     margin: 0;
     padding: 0;
 }
@@ -43,7 +48,7 @@ input[type="text"],input[type="password"]{
     background-color: red;
 }
 .divFoto{
-    border: 1px solid grey;
+    border: #cccccc 1px solid;
     background-color: white;
 }
 .col-md-5{
@@ -51,12 +56,13 @@ input[type="text"],input[type="password"]{
     padding-right: 0%;
 }
 .fotoPerfil{
-    width: 100%;
-    height: 100%;
-
+    width: 90%;
+    height: 90%;
+    padding: 5% 5%;
     /* border-radius: 100%; */
-
 }
+
+/* Botones Menú */
 .boton{
     border: 1px solid grey;
     list-style: none;
@@ -83,3 +89,33 @@ input[type="text"],input[type="password"]{
 .row{
     -webkit-padding-start: 0; 
 }
+.creadorHilo{
+    border: 1px solid #D1D1D1;
+    background: #F1F1F1;
+}
+
+/* Estrellas para los Likes */
+.rating {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+}
+.rating > span {
+    display: inline-block;
+    position: relative;
+    font-size: 65%;
+}
+.rating > span:hover{
+      color: gold;
+}
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+    content: "\2605";
+    position: absolute;
+    color: gold;
+}
+
+
+/*
+h1{                         HAY QUE MODIFICAR EL H1 DE BOOTSTRAP
+    font-size: 1.8em;
+}*/

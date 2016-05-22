@@ -53,7 +53,6 @@ switch ($origen) {
         $username = $_REQUEST['username'];
         $password = $_REQUEST['password'];
 
-
         $resultado = comprobarUsuario($mysqli, $username, $password);
 
         if ($resultado->num_rows > 0) { //usuario y password correcto
@@ -118,7 +117,7 @@ switch ($origen) {
         // Comprobamos si ha ocurrido un error.
         if (!isset($_FILES["imagen"]) || $_FILES["imagen"]["error"] > 0) {
 
-            echo "Ha ocurrido un error al cargar la imagen ____________________________***********************";
+            echo "Ha ocurrido un error al cargar la imagen";
 
             $resultado = crearHilo($mysqli, $asunto, $categoria, $descripcion, $admin);
 
