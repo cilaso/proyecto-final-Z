@@ -9,7 +9,7 @@ if (isset($_SESSION['username'])) { //sesion iniciada
     ?>
 
     <div id="zonaLoginCon" class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 nombreUsuario">
             <?php echo ($_SESSION['username']); ?>
         </div>
         <div class="row">

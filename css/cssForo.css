@@ -113,7 +113,12 @@ input[type="text"],input[type="password"]{
     position: absolute;
     color: gold;
 }
-
+.nombreUsuario{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: lavender;
+}
 
 /*
 h1{                         HAY QUE MODIFICAR EL H1 DE BOOTSTRAP
