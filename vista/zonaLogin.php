@@ -16,16 +16,26 @@ if (isset($_SESSION['username'])) { //sesion iniciada
             <div class="col-md-7">
                 <?php
                 ?>
-                <i class="fa fa-power-off" aria-hidden="true"></i>
-                <form action="../controlador/main.php?origen=desconect" method="POST"> <!-- Desconectarse -->
-                    <input type="submit" value="desconectarse">
-                </form>
-                <form action="../controlador/main.php?origen=crearHilo" method="POST"> <!--  Crear hilo -->
-                    <input type="submit" value="Crear hilo">
-                </form>
-                <form action="miPerfil.php" method="POST"> <!--  Mi perfil -->
-                    <input type="submit" value="Mi perfil">
-                </form>
+                <div class="row">
+                    <div class="col-md-12 perfilBoton">
+                        <i class="fa fa-power-off fa-2x" aria-hidden="true"></i>
+                        <form action="../controlador/main.php?origen=desconect" method="POST"> <!-- Desconectarse -->
+                            <input type="submit" value="Desconectarse">
+                        </form>
+                    </div>
+                    <div class="col-md-12 perfilBoton">
+                        <i class="fa fa-file-o fa-2x" aria-hidden="true"></i>
+                        <form action="../controlador/main.php?origen=crearHilo" method="POST"> <!--  Crear hilo -->
+                            <input type="submit" value="Crear hilo">
+                        </form>
+                    </div>
+                    <div class="col-md-12 perfilBoton">
+                        <i class="fa fa-user fa-2x" aria-hidden="true"></i>
+                        <form action="miPerfil.php" method="POST"> <!--  Mi perfil -->
+                            <input type="submit" value="Mi perfil">
+                        </form>
+                    </div>
+                </div>
             </div>
             <?php
             if (!isset($_SESSION['rutaImagen'])) {

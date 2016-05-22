@@ -57,12 +57,17 @@
 
         <!--PARTE DE ARRIBA A LA DERECHA TIPICA DE TODAS LAS WEBS CON LAS OPCIONES-->
         <div class="row creadorHilo">
-            <div class="col-md-4">
+            <div class="col-md-12" hiloUsuario>
                 <?php
                 include ("zonaLogin.php");
                 ?>
             </div>
-            <div class="col-md-8">
+        </div>
+        <div class="row">
+            <div class="col-md-4 hiloComentario">
+                
+            </div>
+            <div class="col-md-8 hiloComentario">
                 Nombre: <?php echo $hilo[1]; ?> <br>
                 Categoria: <?php echo $hilo[3]; ?> <br>
                 Descripcion: <?php echo $hilo[4]; ?> <br>
@@ -82,20 +87,17 @@
                     echo ("<input type='submit' value='Like!'>");
                     echo("</form>");
                     echo '<div class="rating">';
-                    echo '<span><i class="fa fa-star fa-3x"></i></span>'
-                            . '<span><i class="fa fa-star-o fa-3x"></i></span>'
-                            . '<span><i class="fa fa-star-o fa-3x"></i></span>'
-                            . '<span><i class="fa fa-star-o fa-3x"></i></span>'
-                            . '<span><i class="fa fa-star-o fa-3x"></i></span>'
-                            . '<span><i class="fa fa-thumbs-up" aria-hidden="true"></i></span>'
-                            . '<span><i class="fa fa-thumbs-down" aria-hidden="true"></i></span>';
+                    echo '<span><i class="fa fa-thumbs-up fa-3x" aria-hidden="true"></i></span>'
+                    . '<span><i class="fa fa-thumbs-down fa-3x" aria-hidden="true"></i></span>'
+                    . '<span><i class="fa fa-thumbs-o-up fa-3x" aria-hidden="true"></i></span>'
+                    . '<span><i class="fa fa-thumbs-o-down fa-3x" aria-hidden="true"></i></span>';
                     echo '</div>';
                 }
                 ?>
 
             </div>
-
         </div>
+
 
         <?php
         if (isset($_SESSION['username'])) {
@@ -124,7 +126,7 @@
                     echo ('<form action="../controlador/main.php?origen=borrarMensaje" method="POST">');
                     echo ("<input type=\"hidden\" name=\"id_mensaje\" value=\"$mensaje[1]\">");
                     echo ("<input type=\"submit\" value='borrar mensaje'>");
-                     echo '<i class="fa fa-trash-o" aria-hidden="true"></i>';
+                    echo '<i class="fa fa-trash-o" aria-hidden="true"></i>';
                     echo ("</form>");
                 }
             }
