@@ -64,9 +64,9 @@
             $hiloFav = array();
             $hiloFav = $_SESSION['hiloFav'];
             ?>
-            <div class="tablaHilos">
+            <div class="tablaHilos  table-responsive">
                 <h1>Hilos mas populares</h1>
-                <table id="hilosFavoritos"  class="table table-hover">
+                <table id="hilosFavoritos"  class="table .table-striped">
                     <tr>
                         <th>Categoria</th>
                         <th>Asunto</th>
@@ -95,9 +95,9 @@
 
             $hiloNow = $_SESSION['hiloNow'];
             ?>
-            <div class="tablaHilos">
+            <div class="tablaHilos  table-responsive">
                 <h1>Hilos mas recientes</h1>    
-                <table id="hilosRecientes" class="table table-striped">
+                <table id="hilosRecientes" class="table table-hover">
                     <tr>
                         <th>Categoria</th>
                         <th>Asunto</th>
