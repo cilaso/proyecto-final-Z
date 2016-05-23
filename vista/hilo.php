@@ -65,15 +65,15 @@
         </div>
         <div class="row">
             <div class="col-md-4 hiloComentario">
-                
+               Propietario: <?php echo $hilo[2]; ?> 
             </div>
             <div class="col-md-8 hiloComentario">
                 Nombre: <?php echo $hilo[1]; ?> <br>
                 Categoria: <?php echo $hilo[3]; ?> <br>
                 Descripcion: <?php echo $hilo[4]; ?> <br>
-                Likes: <?php echo $hilo[7]; ?> <br>
+                Likes: <?php echo $hilo[6]; ?> <br>
                 Creador: <?php echo $hilo[2]; ?> <br>
-                Fecha de creacion: <?php echo $hilo[6]; ?> <br>
+                Fecha de creacion: <?php echo $hilo[5]; ?> <br>
                 <?php
                 if (isset($_SESSION['username'])) {
                     echo ('<form action="../controlador/main.php?origen=marcarFav" method="POST">');

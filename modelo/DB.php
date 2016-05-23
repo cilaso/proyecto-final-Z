@@ -2,8 +2,8 @@
 
 //CONEXION CON LA BASE DE DATOS 
 //$mysqli = new mysqli("192.168.1.177", "tony", "tony", "foro_db");  // PC SOAINT TONY
-//$mysqli = new mysqli("192.168.1.146", "root", "root", "foro_db");    // PC SOAINT SERGIO
-$mysqli = new mysqli("192.168.1.238", "root", "root", "foro_db");  // PC CASA SERGIO
+$mysqli = new mysqli("192.168.1.146", "root", "root", "foro_db");    // PC SOAINT SERGIO
+//$mysqli = new mysqli("192.168.1.238", "root", "root", "foro_db");  // PC CASA SERGIO
 
 
 if ($mysqli->connect_errno) {

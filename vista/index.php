@@ -12,6 +12,17 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <script src="https://use.fontawesome.com/342ee199d9.js"></script>
+        <script src="../js/javascriptForo.js" language="javascript" type="text/javascript"></script>
+        	<script type="text/javascript">
+		/*Para enlaces de menú con ruta relativa y sin parámetros:*/
+		$(document).ready(function(){
+		    url_completa = location.href; //URL de la pagina actual
+		    // url_incio = url_completa.lastIndexOf("/"); 
+		    // pagina_actual = url_completa.slice(url_incio+1); //Extraemos el nombre de la pagina
+		    // Asignamos la clase llamada "activo" 
+		    $("#menu li a[href='"+ url_completa +"']").parent().addClass("activo"); 
+		});
+	</script>
     </head>
     <body>
         <div class="container contenedor">
@@ -23,12 +34,10 @@
                 header("Location: ../controlador/main.php?origen=pedir_hilos"); //llamada a la base de datos para las tablas de hilos
             }
 
-
             echo "La fecha actual es " . date("d") . " del " . date("m") . " de " . date("Y");
             echo '<i class="fa fa-themeisle fa-3x" aria-hidden="true"></i>';
             echo '<br>';
             ?>
-
 
             <!--LOGO Y COSAS CHULAS-->
             <ul id="mainMenu" class="row"> <!--MENU DE ARRIBA TIPICO DE TODAS LAS WEBS-->

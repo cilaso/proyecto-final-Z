@@ -37,7 +37,7 @@ if ($password === $contrasenia2) {
 
         if (in_array($_FILES['imagen']['type'], $permitidos) && $_FILES['imagen']['size'] <= $limite_kb * 1024) {
 
-            $dir_destino = '/opt/lampp/htdocs/projectoZ/uploads/';
+            $dir_destino = '/opt/lampp/htdocs/proyectoZ/uploads/';
             $nombre_imagen = date("d") . date("m") . date("Y") . date("H") . date("i") . date("s") . basename($_FILES['imagen']['name']);
             $imagen_subida = $dir_destino . $nombre_imagen;
 
