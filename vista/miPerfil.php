@@ -11,7 +11,25 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        // put your code here
+        session_start();
+        
+        if(isset($_SESSION['infoUsuario'])){
+            
+            $info = $_SESSION['infoUsuario'];
+            
+        }else{
+            header('Location: ../controlador/main.php?origen=pedirInfoUsuario');
+        }
+        
+        $info = $_SESSION['infoUsuario'];
+        
+        var_dump($info);
+        
         ?>
+        <form id="actualizar" method="POST" action="">
+            
+            
+        
+        </form>
     </body>
 </html>

@@ -107,6 +107,14 @@ switch ($origen) {
         borrarMensaje($mysqli, $id_mensaje);
         header('Location: ../vista/hilo.php');
         break;
+    
+    case "pedirInfoUsuario":
+        
+        $_SESSION['infoUsuario'] = pedirInfoUsuario($mysqli, $_SESSION['username']);
+        
+        header('Location: ../vista/miPerfil.php');
+        
+        break;
 
     case "confirmarHilo":
         $asunto = $_REQUEST['asunto'];

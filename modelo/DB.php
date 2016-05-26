@@ -1,8 +1,8 @@
 <?php
 
 //CONEXION CON LA BASE DE DATOS 
-//$mysqli = new mysqli("192.168.1.177", "tony", "tony", "foro_db");  // PC SOAINT TONY
-$mysqli = new mysqli("192.168.1.146", "root", "root", "foro_db");    // PC SOAINT SERGIO
+$mysqli = new mysqli("192.168.1.177", "tony", "tony", "foro_db");  // PC SOAINT TONY
+//$mysqli = new mysqli("192.168.1.146", "root", "root", "foro_db");    // PC SOAINT SERGIO
 //$mysqli = new mysqli("192.168.1.238", "root", "root", "foro_db");  // PC CASA SERGIO
 
 
@@ -31,6 +31,16 @@ function pedirUsuarios($mysqli) {
     $resultado = $mysqli->query("SELECT * FROM usuario;");
 
     return $resultado;
+}
+
+function pedirInfoUsuario($mysqli, $username) {
+
+    $resultado = $mysqli->query("SELECT * FROM usuario where username = '$username';");
+    
+    $resul = mysql_fetch_array($resultado);
+    
+    return $resul;
+ 
 }
 
 function comprobarUsuario($mysqli, $username, $password) { //devuelve los usuarios con ese username y password
