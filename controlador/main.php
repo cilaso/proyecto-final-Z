@@ -48,6 +48,23 @@ switch ($origen) {
 
         break;
 
+    case "pedirInfoUsuario":
+
+        $info = pedirInfoUsuario($mysqli, $_SESSION['username']);
+        
+        $_SESSION['infoUsuario'] = $info;
+        
+        $_SESSION['infoPedida'] = true;
+        
+        header('Location: ../vista/miPerfil.php');
+
+        break;
+
+    case "actualizarUsuario":
+        
+        
+        break;
+    
     case "login":
 
         $username = $_REQUEST['username'];
@@ -107,14 +124,8 @@ switch ($origen) {
         borrarMensaje($mysqli, $id_mensaje);
         header('Location: ../vista/hilo.php');
         break;
-    
-    case "pedirInfoUsuario":
-        
-        $_SESSION['infoUsuario'] = pedirInfoUsuario($mysqli, $_SESSION['username']);
-        
-        header('Location: ../vista/miPerfil.php');
-        
-        break;
+
+
 
     case "confirmarHilo":
         $asunto = $_REQUEST['asunto'];
@@ -130,10 +141,10 @@ switch ($origen) {
             $resultado = crearHilo($mysqli, $asunto, $categoria, $descripcion, $admin);
 
             if ($resultado) {
-                  $_SESSION['usuarioRegistrado'] = "Se ha publicado el hilo éxito";
+                $_SESSION['usuarioRegistrado'] = "Se ha publicado el hilo éxito";
                 header('Location: ../vista/index.php');
             } else {
-                  $_SESSION['usuarioRegistrado'] = 'Se ha producido un error al publicar el hilo';
+                $_SESSION['usuarioRegistrado'] = 'Se ha producido un error al publicar el hilo';
                 header('Location: ../vista/index.php');
             }
         } else {
@@ -155,7 +166,7 @@ switch ($origen) {
                         $resultado = crearHiloConImagen($mysqli, $asunto, $categoria, $descripcion, $admin, $nombre_imagen);
                     }
                 } else {
-                     $_SESSION['usuarioRegistrado'] = "Posible ataque del archivo subido: nombre del archivo '" . $_FILES['imagen']['tmp_name'] . "'. ";
+                    $_SESSION['usuarioRegistrado'] = "Posible ataque del archivo subido: nombre del archivo '" . $_FILES['imagen']['tmp_name'] . "'. ";
                 }
 
                 if ($resultado) {
@@ -168,7 +179,7 @@ switch ($origen) {
                     header('Location: ../vista/index.php');
                 }
             } else {
-                $_SESSION['usuarioRegistrado'] =  "Archivo no permitido, es tipo de archivo prohibido o excede el tamano de $limite_kb Kilobytes";
+                $_SESSION['usuarioRegistrado'] = "Archivo no permitido, es tipo de archivo prohibido o excede el tamano de $limite_kb Kilobytes";
             }
         }
 

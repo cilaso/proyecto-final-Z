@@ -57,8 +57,7 @@
 
                 </div>
             </div>
-
-
+            
             <?php
             //TABLA DE HILOS FAVORITOS
             $hiloFav = array();
@@ -70,7 +69,7 @@
                     <tr>
                         <th>Categoria</th>
                         <th>Asunto</th>
-                   <!-- <th>Descripcion</th> -->
+                        <th>Descripcion</th>
                         <th>Likes</th>
                         <th>Fecha de creacion</th>
                         <th>Creador</th>
@@ -79,9 +78,9 @@
                     foreach ($hiloFav as $filaFav) {
                         echo("<td>'$filaFav[3]'</td>");          // Categoria
                         echo("<td>'$filaFav[1]'</td>");          // Asunto
-                        /*  echo("<td>'$filaFav[4]'</td>"); */       // Descripcion
-                        echo("<td>'$filaFav[6]'</td>");          // Likes
-                        echo("<td>'$filaFav[5]'</td>");          // Fecha creacion
+                        echo("<td>'$filaFav[4]'</td>");          // Descripcion
+                        echo("<td>'$filaFav[7]'</td>");          // Likes
+                        echo("<td>'$filaFav[6]'</td>");          // Fecha creacion
                         echo("<td>'$filaFav[2]'</td>");          // Creador
                         echo('<td><a href="hilo.php?id_hilo=' . $filaFav[0] . '">Ir</a></td>'); // Boton ir al hilo
                         echo("</tr>");
@@ -103,7 +102,7 @@
                         <th>Asunto</th>
                         <th>Descripcion</th>
                         <th>Likes</th>
-                        <th>Fecha de felación</th>
+                        <th>Fecha de creación</th>
                         <th>Creador</th>
                         <th></th>
                     </tr>
@@ -114,8 +113,8 @@
                         echo("<td>'$filaNow[3]'</td>");
                         echo("<td>'$filaNow[1]'</td>");
                         echo("<td>'$filaNow[4]'</td>");
+                        echo("<td>'$filaNow[7]'</td>");
                         echo("<td>'$filaNow[6]'</td>");
-                        echo("<td>'$filaNow[5]'</td>");
                         echo("<td>'$filaNow[2]'</td>");
                         echo('<td><a href="hilo.php?id_hilo=' . $filaNow[0] . '">Ir</a></td>');
 

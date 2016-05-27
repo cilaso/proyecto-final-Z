@@ -12,7 +12,7 @@ $correo = $_REQUEST['correo'];
 $fecha_nacimiento = $_REQUEST['cumpleanios'];
 
 // Validamos que las 2 contraseñas sean iguales
-if ($password === $contrasenia2) {
+if ($password == $contrasenia2) {
 
 // Comprobamos si ha ocurrido un error, o si no ha adjuntado imagen
 // Sea cual sea el resultado, procedemos a registrar el usuario igualmente sin iamgen

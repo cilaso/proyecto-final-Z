@@ -5,6 +5,7 @@ $url = $porciones[0]; //url actual
 $url = substr($url, 1);
 $_SESSION['url'] = $url;
 
+
 if (isset($_SESSION['username'])) { //sesion iniciada
     ?>
 
@@ -56,6 +57,8 @@ if (isset($_SESSION['username'])) { //sesion iniciada
                 echo '<br>';
                 unset($_SESSION['usuarioIncorrecto']);
             }
+            
+            
 
             echo('iniciar sesion:');
             echo('<br>');

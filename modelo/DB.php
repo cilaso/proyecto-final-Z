@@ -37,7 +37,7 @@ function pedirInfoUsuario($mysqli, $username) {
 
     $resultado = $mysqli->query("SELECT * FROM usuario where username = '$username';");
     
-    $resul = mysql_fetch_array($resultado);
+    $resul = mysqli_fetch_array($resultado);
     
     return $resul;
  
