@@ -11,8 +11,8 @@
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <link rel = "stylesheet" href = "/opt/lampp/htdocs/projectoZ/font-awesome-4.6.3/css/font-awesome.min.css">
         <script src="https://use.fontawesome.com/342ee199d9.js"></script>
+        <script src="../js/javascriptForo.js" language="javascript" type="text/javascript"></script>
     </head>
 
     <?php
@@ -26,27 +26,27 @@
     } else {
         $id_hilo = $_SESSION['id_hilo'];
     }
+
+    $resultadoHilo = pedirHiloPorId($mysqli, $id_hilo); //informacion del hilo actual
+
+    $hilo = mysqli_fetch_array($resultadoHilo);
+
+    $resultadoMensajes = pedirMensajes($mysqli, $id_hilo); //comentarios del hilo actual
+
+    $mensajes = array();
+
+    while ($fila = mysqli_fetch_array($resultadoMensajes, MYSQLI_BOTH)) {
+
+        $mensajes[] = $fila;
+    }
     ?>
 
     <div class="container contenedor">
-
         <?php
-        $resultadoHilo = pedirHiloPorId($mysqli, $id_hilo);
-
-        $resultadoHilo = pedirHiloPorId($mysqli, $id_hilo); //informacion del hilo actual
-
-        $hilo = mysqli_fetch_array($resultadoHilo);
-
-        $resultadoMensajes = pedirMensajes($mysqli, $id_hilo); //comentarios del hilo actual
-
-        $mensajes = array();
-
-        while ($fila = mysqli_fetch_array($resultadoMensajes, MYSQLI_BOTH)) {
-
-            $mensajes[] = $fila;
-        }
+        echo "La fecha actual es " . date("d") . " del " . date("m") . " de " . date("Y");
+        echo '<i class="fa fa-themeisle fa-3x" aria-hidden="true"></i>';
+        echo '<br>';
         ?>
-
         <!--LOGO Y COSAS CHULAS-->
         <ul id="mainMenu" class="row"> <!--MENU DE ARRIBA TIPICO DE TODAS LAS WEBS-->
             <li class="col-md-3 boton"><a href="index.php">Inicio</a></li>
@@ -56,16 +56,20 @@
         </ul>
 
         <!--PARTE DE ARRIBA A LA DERECHA TIPICA DE TODAS LAS WEBS CON LAS OPCIONES-->
-        <div class="row creadorHilo">
+        <!--<div class="row creadorHilo">
             <div class="col-md-12" hiloUsuario>
+        -->
+        <div class="row">
+            <div class="col-md-8"></div>
+            <div class="col-md-4">
                 <?php
                 include ("zonaLogin.php");
                 ?>
             </div>
         </div>
-        <div class="row">
+        <div class="row hiloCelda">
             <div class="col-md-4 hiloComentario">
-               Propietario: <?php echo $hilo[2]; ?> 
+                Propietario: <?php echo $hilo[2]; ?> 
             </div>
             <div class="col-md-8 hiloComentario">
                 Nombre: <?php echo $hilo[1]; ?> <br>

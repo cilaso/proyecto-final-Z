@@ -13,16 +13,6 @@
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <script src="https://use.fontawesome.com/342ee199d9.js"></script>
         <script src="../js/javascriptForo.js" language="javascript" type="text/javascript"></script>
-        	<script type="text/javascript">
-		/*Para enlaces de menú con ruta relativa y sin parámetros:*/
-		$(document).ready(function(){
-		    url_completa = location.href; //URL de la pagina actual
-		    // url_incio = url_completa.lastIndexOf("/"); 
-		    // pagina_actual = url_completa.slice(url_incio+1); //Extraemos el nombre de la pagina
-		    // Asignamos la clase llamada "activo" 
-		    $("#menu li a[href='"+ url_completa +"']").parent().addClass("activo"); 
-		});
-	</script>
     </head>
     <body>
         <div class="container contenedor">
@@ -30,7 +20,6 @@
             session_start();
 
             if ($_SESSION['hilosPedidos'] == false) {
-
                 header("Location: ../controlador/main.php?origen=pedir_hilos"); //llamada a la base de datos para las tablas de hilos
             }
 
@@ -40,7 +29,7 @@
             ?>
 
             <!--LOGO Y COSAS CHULAS-->
-            <ul id="mainMenu" class="row"> <!--MENU DE ARRIBA TIPICO DE TODAS LAS WEBS-->
+            <ul id="menu" class="row"> <!--MENU DE ARRIBA TIPICO DE TODAS LAS WEBS-->
                 <li class="col-md-3 boton"><a href="index.php">Inicio</a></li>
                 <li class="col-md-3 boton"><a href="favoritos.php">Favoritos</a></li>
                 <li class="col-md-3 boton"><a href="misHilos.php">Mis hilos</a></li>
@@ -50,6 +39,19 @@
             <div class="row">
                 <div class="col-md-8"></div>
                 <div class="col-md-4">
+
+                    <?php
+                    if (isset($_REQUEST["mensaje"])) {
+                        $mensaje = $_REQUEST["mensaje"];
+                        echo '<p>' . $mensaje . '</p>';
+                        var_dump($mensaje);
+                    }
+
+                    if (isset($_SESSION['usuarioRegistrado'])) {
+                        echo '<div>' . $_SESSION['usuarioRegistrado'] . '</div>';
+                    }
+                    ?>
+
                     <!--PARTE DE ARRIBA A LA DERECHA TIPICA DE TODAS LAS WEBS CON LAS OPCIONES-->
                     <?php
                     include ("zonaLogin.php");
@@ -57,7 +59,7 @@
 
                 </div>
             </div>
-            
+
             <?php
             //TABLA DE HILOS FAVORITOS
             $hiloFav = array();
@@ -65,7 +67,7 @@
             ?>
             <div class="tablaHilos  table-responsive">
                 <h1>Hilos mas populares</h1>
-                <table id="hilosFavoritos"  class="table .table-striped">
+                <table id="hilosFavoritos" class="table table-striped">
                     <tr>
                         <th>Categoria</th>
                         <th>Asunto</th>

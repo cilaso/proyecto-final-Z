@@ -5,8 +5,7 @@ $url = $porciones[0]; //url actual
 $url = substr($url, 1);
 $_SESSION['url'] = $url;
 
-
-if (isset($_SESSION['username'])) { //sesion iniciada
+if (isset($_SESSION['username'])) { //sesion iniciada SESION INICIADA
     ?>
 
     <div id="zonaLoginCon" class="row">
@@ -48,7 +47,7 @@ if (isset($_SESSION['username'])) { //sesion iniciada
             }
             echo("</div>");
             echo("</div>");
-        } else { //sesion no iniciada
+        } else {                        //sesion no iniciada SESION NO INICIADA
             echo("<div id=\"zonaLoginDesc\" class=\"row\">");
             echo ('<div class="col-md-12">');
 
@@ -58,7 +57,10 @@ if (isset($_SESSION['username'])) { //sesion iniciada
                 unset($_SESSION['usuarioIncorrecto']);
             }
             
-            
+          
+            if(isset($_REQUEST["mensaje"])){
+                echo '404INVALID USER 102394';
+            }
 
             echo('iniciar sesion:');
             echo('<br>');

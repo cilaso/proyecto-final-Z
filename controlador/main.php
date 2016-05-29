@@ -78,8 +78,8 @@ switch ($origen) {
             unset($_SESSION['usuarioIncorrecto']);
             header("Location: ../../" . $_SESSION['url'] . "");
         } else { //usuario incorrecto
-            $_SESSION['usuarioIncorrecto'] = 1;
-            header("Location: ../../" . $_SESSION['url'] . "");
+            $_SESSION['usuarioIncorrecto'] = "404USER NO VALID";
+            header("Location: ../../" . $_SESSION['url'] . "?mensaje='USUARIO INCORRECTO");
         }
         break;
 

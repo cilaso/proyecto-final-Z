@@ -11,9 +11,24 @@ $apellidos = $_REQUEST['apellidos'];
 $correo = $_REQUEST['correo'];
 $fecha_nacimiento = $_REQUEST['cumpleanios'];
 
+/*
+echo $username . " USUARIO <br>";
+echo $password . " PASSWORD <br>";
+echo $contrasenia2 . " PASSWORD2 <br>";
+echo $nombre . " NOMBRE <br>";
+echo $apellidos . " APELLIDOS <br>";
+echo $correo . " CORREO <br>";
+echo $fecha_nacimiento . " FECHA NACIMIENTO <br>";
+die();
+ */
+
 // Validamos que las 2 contraseñas sean iguales
 if ($password == $contrasenia2) {
-
+    /*
+    echo 'LAS CONTRASEÑAS SON IGUALES';
+    die();
+     */
+    
 // Comprobamos si ha ocurrido un error, o si no ha adjuntado imagen
 // Sea cual sea el resultado, procedemos a registrar el usuario igualmente sin iamgen
 // Ya que se podrá adjuntar la imagen en el menú de usuario
@@ -40,14 +55,24 @@ if ($password == $contrasenia2) {
             $dir_destino = '/opt/lampp/htdocs/proyectoZ/uploads/';
             $nombre_imagen = date("d") . date("m") . date("Y") . date("H") . date("i") . date("s") . basename($_FILES['imagen']['name']);
             $imagen_subida = $dir_destino . $nombre_imagen;
-
+            
+            
+            /*
+             echo $imagen_subida;
+             die();
+             */
+            
             if (is_uploaded_file($_FILES['imagen']['tmp_name'])) {
                 if (move_uploaded_file($_FILES['imagen']['tmp_name'], $imagen_subida)) {
                     $resultado = registrarUsuarioConImagen($mysqli, $username, $password, $nombre, $apellidos, $correo, $fecha_nacimiento, $nombre_imagen);
                 } else {
+                     echo 'NO SE HA PODIDO MOVER NOSEEE';
+                     die();
                     $_SESSION['usuarioRegistrado'] = "Posible ataque del archivo subido: nombre del archivo '" . $_FILES['imagen']['tmp_name'];
                 }
             } else {
+                 echo 'NO ES MOVIBLE';
+                 die();
                 $_SESSION['usuarioRegistrado'] = "Posible ataque del archivo subido: ";
             }
 
