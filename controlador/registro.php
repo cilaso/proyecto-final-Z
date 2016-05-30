@@ -24,10 +24,6 @@ die();
 
 // Validamos que las 2 contraseñas sean iguales
 if ($password == $contrasenia2) {
-    /*
-    echo 'LAS CONTRASEÑAS SON IGUALES';
-    die();
-     */
     
 // Comprobamos si ha ocurrido un error, o si no ha adjuntado imagen
 // Sea cual sea el resultado, procedemos a registrar el usuario igualmente sin iamgen

@@ -90,6 +90,38 @@ switch ($origen) {
         header('Location: ../vista/hilo.php');
         break;
 
+    case "cambiarPass":
+        
+        $pass = $_REQUEST['passActual'];
+        $passNueva1 = $_REQUEST['passNueva1'];
+        $passNueva2 = $_REQUEST['passNueva2'];
+        
+        $ok = confirmarUsuario($mysqli, $pass, $_SESSION['username']);
+        
+        if($ok){
+            
+            if($passNueva1 == $passNueva2){
+                
+                actualizarPass($mysqli, $passNueva1, $_SESSION['username']);
+                
+                $_SESSION['cambiarPass'] = "Cambio realizado con exito";
+                
+            }else{
+                
+                $_SESSION['cambiarPass'] = "No coinciden los dos valores";
+                
+            }
+            
+        }else{
+            
+            $_SESSION['cambiarPass'] = "Contraseña incorrecta";
+            
+        }
+        
+        header('Location: ../vista/miPerfil.php');
+        
+        break;
+    
     case "marcarFav":
         $id_hilo = $_REQUEST['id_hilo'];
         $username = $_SESSION['username'];

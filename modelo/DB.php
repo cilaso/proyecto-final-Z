@@ -1,9 +1,9 @@
 <?php
 
 //CONEXION CON LA BASE DE DATOS 
-//$mysqli = new mysqli("192.168.1.177", "tony", "tony", "foro_db");  // PC SOAINT TONY
+$mysqli = new mysqli("192.168.1.177", "tony", "tony", "foro_db");  // PC SOAINT TONY
 //$mysqli = new mysqli("192.168.1.146", "root", "root", "foro_db");    // PC SOAINT SERGIO
-$mysqli = new mysqli("192.168.1.238", "root", "root", "foro_db");  // PC CASA SERGIO
+//$mysqli = new mysqli("192.168.1.238", "root", "root", "foro_db");  // PC CASA SERGIO
 
 
 if ($mysqli->connect_errno) {
@@ -61,6 +61,24 @@ function usuarioConImagen($mysqli, $username) {
     } else {
         return $ruta_imagen[0];
     }
+}
+
+function confirmarUsuario($mysqli, $pass, $username){
+    
+    $resultado = $mysqli->query("SELECT * FROM usuario WHERE username = '$username' AND contrasenia = '$pass'");
+    
+    if ($resultado->num_rows > 0){
+        return true;
+    }else{
+        return false;
+    }
+    
+}
+
+function actualizarPass($mysqli, $passNueva1, $username){
+    
+    $mysqli->query("update usuario set contrasenia = '$passNueva1' where username = '$username'");
+    
 }
 
 /* FUNCIONES DE REGISTRO HILO O RELACIONADAS CON HILOS */
@@ -155,6 +173,22 @@ function marcarHiloFavorito($mysqli, $username, $id_hilo) { //marcas un hilo com
 
 function desmarcarHiloFavorito($mysqli, $username, $id_hilo) { //marcas un hilo como favorito tuyo
     $mysqli->query("delete from favorito where username = '$username' and id_hilo = '$id_hilo'");
+}
+
+function buscarHilo($mysqli, $query){
+    
+    $resultado = $mysqli->query("$query");
+    
+    
+    $hilos = array();
+
+    while ($hilo = mysqli_fetch_array($resultado, MYSQLI_BOTH)) {
+
+        $hilos[] = $hilo;
+    }
+
+
+    return $hilos;
 }
 
 /* FUNCIONES DE INSERTAR MENSAJE O RELACIONADAS CON LOS MENSAJES */

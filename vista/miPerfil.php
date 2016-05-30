@@ -27,7 +27,7 @@ and open the template in the editor.
             <li class="col-md-3 boton"><a href="index.php">Inicio</a></li>
             <li class="col-md-3 boton"><a href="favoritos.php">Favoritos</a></li>
             <li class="col-md-3 boton"><a href="misHilos.php">Mis hilos</a></li>
-            <li class="col-md-3 boton"><a href="buscarHilos.php">Buscar hilos</a></li>
+            <li class="col-md-3 boton"><a href="buscarHilosForm.php">Buscar hilos</a></li>
         </ul>
 
         <div class="row">
@@ -72,6 +72,27 @@ and open the template in the editor.
             echo("</div>");
             ?>
             <input type='submit' value='Actualizar perfil'>
+        </form>
+        
+        <?php
+        
+        if(isset($_SESSION['cambiarPass'])){
+            echo $_SESSION['cambiarPass'];
+            unset($_SESSION['cambiarPass']);
+        }
+        
+        ?>
+        
+        <form id="cambiarContraseña" method="POST" action="../controlador/main.php?origen=cambiarPass">
+            CAMBIAR CONTRASEÑA:
+            <br>
+            Contraseña antigua:
+            <input type="password" name="passActual"><br>
+            Contraseña nueva:
+            <input type="password" name="passNueva1"><br>
+            Repetir contraseña nueva:
+            <input type="password" name="passNueva2"><br>
+            <input type="submit" vslue="confirmar">
         </form>
     </body>
 </html>
