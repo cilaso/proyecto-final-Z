@@ -171,10 +171,19 @@ input[type="text"],input[type="password"]{
 
 /* Zona Registro */ 
 .contenedorRegistro{
-    margin-top: 2%;
-    background-color: green;
-    width: 60%;
+    margin-top: 10%;
+    margin-left: 67%;
+    background-color: graytext;
+    width: 35%;
+    height: 100%;
     text-align: center;
+ /*   margin-left: auto;
+    margin-right: auto; */
+ color: white;
+}
+.fondoCrearHilo{
+    background-image: url(../images/wallhaven-383981.jpg);
+    background-size: 100%;
 }
 .campoFormulario:nth-child(2n+1){
     width: 20%;

@@ -75,6 +75,7 @@
                         <th>Likes</th>
                         <th>Fecha de creacion</th>
                         <th>Creador</th>
+                        <th></th>
                     </tr>
                     <?php
                     foreach ($hiloFav as $filaFav) {

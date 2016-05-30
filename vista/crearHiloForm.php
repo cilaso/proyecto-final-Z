@@ -8,12 +8,12 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     </head>
-    <body>
+    <body class="fondoCrearHilo">
         <?php
         session_start();
         ?>
-        <div class="container contenedorRegistro">
-            <h1 class="titularRegistroForm">Crear</h1>
+        <div class="contenedorRegistro">
+            <h1 class="titularRegistroForm">Crear hilo</h1>
             <form action="../controlador/main.php?origen=confirmarHilo" method="POST" enctype="multipart/form-data" >
                 <div class="col-md-6 campoFormulario">
                     <label for="asunto">Asunto: </label>
@@ -24,7 +24,9 @@
                 <div class="col-md-6 campoFormulario">
                     <label for="categoria">Categoria: </label>
                 </div>
-                <div class="col-md-6 campoFormulario"><input type="text" id="categoria" name="categoria" required></div>
+                <div class="col-md-6 campoFormulario">
+                    <input type="text" id="categoria" name="categoria" required>
+                </div>
                 <div class="col-md-6 campoFormulario">
                     <label for="descripcion">Descripción: </label>
                 </div>
