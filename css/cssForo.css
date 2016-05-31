@@ -208,6 +208,11 @@ input[type="text"],input[type="password"]{
     width: 100%;
     margin-bottom: 1%;
 }
+.campoRegistroHilo{
+    color: goldenrod;
+}
+
+
 /* Tabla responsiva */
 @-moz-document url-prefix() {
     fieldset { display: table-cell; }

@@ -19,19 +19,19 @@
                     <label for="asunto">Asunto: </label>
                 </div>
                 <div class="col-md-6 campoFormulario">
-                    <input type="text" id="asunto" name="asunto" required>
+                    <input type="text" id="asunto" name="asunto" required class="campoRegistroHilo">
                 </div>
                 <div class="col-md-6 campoFormulario">
                     <label for="categoria">Categoria: </label>
                 </div>
                 <div class="col-md-6 campoFormulario">
-                    <input type="text" id="categoria" name="categoria" required>
+                    <input type="text" id="categoria" name="categoria" required class="campoRegistroHilo">
                 </div>
                 <div class="col-md-6 campoFormulario">
                     <label for="descripcion">Descripción: </label>
                 </div>
                 <div class="col-md-6 campoFormulario">
-                    <input type="text" id="descripcion" name="descripcion" required>
+                    <input type="text" id="descripcion" name="descripcion" required class="campoRegistroHilo">
                 </div>
                 <div class="col-md-6 campoFormulario">
                     <label for="imagen">Imagen: </label>

@@ -191,6 +191,19 @@ function buscarHilo($mysqli, $query){
     return $hilos;
 }
 
+function hiloConImagen($mysqli, $username) {
+
+    $resultado = $mysqli->query("SELECT nombre_imagen FROM hilo WHERE username = '$username' ");
+
+    $ruta_imagen = mysqli_fetch_array($resultado);
+
+    if ($ruta_imagen[0] == NULL) {
+        return "no-avatar.png";
+    } else {
+        return $ruta_imagen[0];
+    }
+}
+
 /* FUNCIONES DE INSERTAR MENSAJE O RELACIONADAS CON LOS MENSAJES */
 
 function insertarMensaje($mysqli, $remitente, $id_hilo, $mensaje) {
