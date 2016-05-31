@@ -191,9 +191,9 @@ function buscarHilo($mysqli, $query){
     return $hilos;
 }
 
-function hiloConImagen($mysqli, $username) {
+function hiloConImagen($mysqli, $id_Hilo) {
 
-    $resultado = $mysqli->query("SELECT nombre_imagen FROM hilo WHERE username = '$username' ");
+    $resultado = $mysqli->query("SELECT nombre_imagen FROM hilo WHERE id_Hilo = '$id_Hilo' ");
 
     $ruta_imagen = mysqli_fetch_array($resultado);
 

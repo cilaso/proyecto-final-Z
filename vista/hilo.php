@@ -69,8 +69,8 @@
         </div>
         <div class="row hiloCelda">
             <div class="col-md-4 hiloComentario">
-                Propietario: <?php
-                echo $hilo[2];
+                Propietario: <?php echo $hilo[2];
+                $_SESSION["id_hilo"] = $hilo[0];
                 if (!isset($_SESSION['rutaImagen'])) {
                     header('Location: ../controlador/main.php?origen=consultarImagenHilo');
                 } else {

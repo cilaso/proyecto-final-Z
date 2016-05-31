@@ -152,7 +152,8 @@ switch ($origen) {
         break;
     
     case "consultarImagenHilo":
-        $ruta = hiloConImagen($mysqli, $_SESSION['username']);
+        /*$idHilo = $_SESSION["idHilo"];*/
+        $ruta = hiloConImagen($mysqli, $_SESSION["id_hilo"]);
         $_SESSION['rutaImagenHilo'] = $ruta;
         header("Location: ../../" . $_SESSION['url'] . "");
         break;
