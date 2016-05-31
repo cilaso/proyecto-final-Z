@@ -133,9 +133,25 @@ switch ($origen) {
 
         $id_hilo = $_REQUEST['id_hilo'];
         desmarcarHiloFavorito($mysqli, $_SESSION['username'], $id_hilo);
-        header('Location: ../vista/favoritos.php');
+        header("Location: ../../" . $_SESSION['url']."");
         break;
 
+    case "darLike";
+        
+        $id_hilo = $_REQUEST['id_hilo'];
+        $username = $_SESSION['username'];
+        darLikeHilo($mysqli, $username, $id_hilo);
+        header('Location: ../vista/hilo.php');
+        
+        break;
+    
+    case "desmarcarLike":
+
+        $id_hilo = $_REQUEST['id_hilo'];
+        desmarcarLikeHilo($mysqli, $_SESSION['username'], $id_hilo);
+        header("Location: ../../" . $_SESSION['url']."");
+        break;
+    
     case "desconect":
         session_destroy();
         header('Location: ../vista/index.php');

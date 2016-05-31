@@ -1,8 +1,8 @@
 <?php
 
 //CONEXION CON LA BASE DE DATOS 
-//$mysqli = new mysqli("192.168.1.177", "tony", "tony", "foro_db");  // PC SOAINT TONY
-$mysqli = new mysqli("192.168.1.146", "root", "root", "foro_db");    // PC SOAINT SERGIO
+$mysqli = new mysqli("192.168.1.177", "tony", "tony", "foro_db");  // PC SOAINT TONY
+//$mysqli = new mysqli("192.168.1.146", "root", "root", "foro_db");    // PC SOAINT SERGIO
 //$mysqli = new mysqli("192.168.1.238", "root", "root", "foro_db");  // PC CASA SERGIO
 
 
@@ -14,7 +14,7 @@ if ($mysqli->connect_errno) {
 
 function registrarUsuario($mysqli, $username, $password, $nombre, $apellidos, $correo, $fecha_nacimiento) {
 
-    $resultado = $mysqli->query("INSERT INTO usuario (username,contrasenia,nombre,apellidos,correo,fecha_alta,fecha_nacimiento) VALUES('$username', '$password', '$nombre', '$apellidos', '$correo', now(), '$fecha_nacimiento');");
+    $resultado = $mysqli->query("INSERT INTO usuario (username,contrasenia,nombre,apellidos,correo,fecha_alta,fecha_nacimiento, nombre_imagen) VALUES('$username', '$password', '$nombre', '$apellidos', '$correo', now(), '$fecha_nacimiento', 'no-avatar.png');");
 
     return $resultado;
 }
@@ -56,11 +56,11 @@ function usuarioConImagen($mysqli, $username) {
 
     $ruta_imagen = mysqli_fetch_array($resultado);
 
-    if ($ruta_imagen[0] == NULL) {
-        return "no-avatar.png";
-    } else {
+//    if ($ruta_imagen[0] == NULL) {
+//        return "no-avatar.png";
+//    } else {
         return $ruta_imagen[0];
-    }
+//    }
 }
 
 function confirmarUsuario($mysqli, $pass, $username){
@@ -147,7 +147,6 @@ function pedirMisFav($mysqli, $username) { //hilos marcados por mi como favorito
 
         $fav = mysqli_fetch_array($resul, MYSQLI_BOTH);
 
-
         $misFavs[] = $fav;
     }
 
@@ -171,8 +170,44 @@ function marcarHiloFavorito($mysqli, $username, $id_hilo) { //marcas un hilo com
     $mysqli->query("insert into favorito values ('$username', '$id_hilo');");
 }
 
+function comprobarHiloFavorito ($mysqli, $username, $id_hilo){ //comprueba si lo tienes marcado como favorito
+    
+    $resultado = $mysqli->query("select * from favorito where username = '$username' and id_hilo = '$id_hilo'");
+    
+    if ($resultado->num_rows > 0){
+        return true;
+    }else{
+        return false;
+    }
+    
+}
+
 function desmarcarHiloFavorito($mysqli, $username, $id_hilo) { //marcas un hilo como favorito tuyo
     $mysqli->query("delete from favorito where username = '$username' and id_hilo = '$id_hilo'");
+}
+
+
+function darLikeHilo($mysqli, $username, $id_hilo) { //marcas un hilo como like
+    $mysqli->query("insert into likes values ('$username', '$id_hilo');");
+    $mysqli->query("UPDATE hilo SET likes = likes+1 WHERE id_hilo = '$id_hilo'");
+    
+}
+
+function desmarcarLikeHilo($mysqli, $username, $id_hilo) { //desmarcas un hilo como like tuyo
+    $mysqli->query("delete from likes where username = '$username' and id_hilo = '$id_hilo'");
+    $mysqli->query("UPDATE hilo SET likes = likes-1 WHERE id_hilo = '$id_hilo'");
+}
+
+function comprobarLikeHilo($mysqli, $username, $id_hilo){ //comprueba si lo tienes marcado como like
+    
+    $resultado = $mysqli->query("select * from likes where username = '$username' and id_hilo = '$id_hilo'");
+    
+    if ($resultado->num_rows > 0){
+        return true;
+    }else{
+        return false;
+    }
+    
 }
 
 function buscarHilo($mysqli, $query){
@@ -222,8 +257,15 @@ function insertarMensajeConImagen($mysqli, $remitente, $id_hilo, $mensaje, $nomb
 
 function pedirMensajes($mysqli, $id_hilo) { //devuelve los mensajes del hilo con id que le pases
     $resultado = $mysqli->query("SELECT * FROM mensaje WHERE id_hilo_perteneciente = '$id_hilo'");
+    
+    $mensajes = array();
 
-    return $resultado;
+    while ($fila = mysqli_fetch_array($resultado, MYSQLI_BOTH)) {
+
+        $mensajes[] = $fila;
+    }
+
+    return $mensajes;
 }
 
 function borrarMensaje($mysqli, $id_mensaje) {

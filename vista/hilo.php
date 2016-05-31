@@ -31,14 +31,7 @@
 
     $hilo = mysqli_fetch_array($resultadoHilo);
 
-    $resultadoMensajes = pedirMensajes($mysqli, $id_hilo); //comentarios del hilo actual
-
-    $mensajes = array();
-
-    while ($fila = mysqli_fetch_array($resultadoMensajes, MYSQLI_BOTH)) {
-
-        $mensajes[] = $fila;
-    }
+    $mensajes = pedirMensajes($mysqli, $id_hilo); //comentarios del hilo actual
     ?>
 
     <div class="container contenedor">
@@ -69,16 +62,17 @@
         </div>
         <div class="row hiloCelda">
             <div class="col-md-4 hiloComentario">
-                Propietario: <?php echo $hilo[2];
-                $_SESSION["id_hilo"] = $hilo[0];
-                if (!isset($_SESSION['rutaImagen'])) {
-                    header('Location: ../controlador/main.php?origen=consultarImagenHilo');
-                } else {
-                    echo ('<div class="col-md-5 divFoto">');
-                    echo "<img src='../uploads/" . $_SESSION['rutaImagen'] . "' class=fotoPerfil />";
-                    echo ('</div>');
-                }
-                ?> 
+                Propietario: <?php
+                echo $hilo[2];
+//                $_SESSION["id_hilo"] = $hilo[0];
+//                if (!isset($_SESSION['rutaImagen'])) {
+//                    header('Location: ../controlador/main.php?origen=consultarImagenHilo');
+//                } else {
+//                    echo ('<div class="col-md-5 divFoto">');
+//                    echo "<img src='../uploads/" . $_SESSION['rutaImagen'] . "' class=fotoPerfil />";
+//                    echo ('</div>');
+//                }
+                ?>
             </div>
             <div class="col-md-8 hiloComentario">
                 Nombre: <?php echo $hilo[1]; ?> <br>
@@ -89,16 +83,34 @@
                 Fecha de creacion: <?php echo $hilo[5]; ?> <br>
                 <?php
                 if (isset($_SESSION['username'])) {
-                    echo ('<form action="../controlador/main.php?origen=marcarFav" method="POST">');
-                    echo ("<input type='hidden' name='id_hilo' value=\"" . $hilo[0] . "\">");
-                    echo ("<input type='submit' value='marcar como favorito'>");
-                    echo("</form>");
+                    $fav = comprobarHiloFavorito($mysqli, $_SESSION['username'], $id_hilo);
+                    $like = comprobarLikeHilo($mysqli, $_SESSION['username'], $id_hilo);
+                    if ($fav == false) {
+                        echo ('<form action="../controlador/main.php?origen=marcarFav" method="POST">');
+                        echo ("<input type='hidden' name='id_hilo' value=\"" . $hilo[0] . "\">");
+                        echo ("<input type='submit' value='marcar como favorito'>");
+                        echo("</form>");
+                    } else {
+                        echo ('<form action="../controlador/main.php?origen=desmarcarFav" method="POST">');
+                        echo ("<input type='hidden' name='id_hilo' value=\"" . $hilo[0] . "\">");
+                        echo ("<input type='submit' value='desmarcar como favorito'>");
+                        echo("</form>");
+                    }
 
-                    echo "ESTO AUN NO FUNCIONA";
-                    echo ('<form action="../controlador/main.php?origen=darLike" method="POST">');
-                    echo ("<input type='hidden' name='id_hilo' value=" . $hilo[0] . ">");
-                    echo ("<input type='submit' value='Like!'>");
-                    echo("</form>");
+
+                    if ($like == false) {
+                        echo ('<form action="../controlador/main.php?origen=darLike" method="POST">');
+                        echo ("<input type='hidden' name='id_hilo' value=" . $hilo[0] . ">");
+                        echo ("<input type='submit' id ='likeNegro' value='&nbsp;❤'>");
+                        echo("</form>");
+                    } else {
+                        echo ('<form action="../controlador/main.php?origen=desmarcarLike" method="POST">');
+                        echo ("<input type='hidden' name='id_hilo' value=" . $hilo[0] . ">");
+                        echo ("<input type='submit' id ='likeRojo' value='&nbsp;❤'>");
+                        echo("</form>");
+                    }
+
+
                     echo '<div class="rating">';
                     echo '<span><i class="fa fa-thumbs-up fa-3x" aria-hidden="true"></i></span>'
                     . '<span><i class="fa fa-thumbs-down fa-3x" aria-hidden="true"></i></span>'
@@ -109,6 +121,30 @@
                 ?>
 
             </div>
+        </div>
+        <div class='comentarios'>
+            <?php
+            foreach ($mensajes as $mensaje) {
+                echo '<div id="comentario">';
+                $ruta_imagen = usuarioConImagen($mysqli, $mensaje[0]);
+                echo "<img src='../uploads/" . $ruta_imagen . "'/>";
+                echo '<i class="fa fa-quote-right" aria-hidden="true"></i>';
+                echo("Persona que comenta: '$mensaje[0]'");
+                echo ('<br>');
+                echo("Comentario: '$mensaje[4]'");
+                echo ('<br>');
+                echo("Fecha de comentario: '$mensaje[2]'");
+                echo ('<br>');
+                if (isset($_SESSION['username']) && $mensaje[0] == $_SESSION['username']) { //formulario para borrar el mensaje si es tuyo
+                    echo ('<form action="../controlador/main.php?origen=borrarMensaje" method="POST">');
+                    echo ("<input type=\"hidden\" name=\"id_mensaje\" value=\"$mensaje[1]\">");
+                    echo ("<input type=\"submit\" value='borrar mensaje'>");
+                    echo '<i class="fa fa-trash-o" aria-hidden="true"></i>';
+                    echo ("</form>");
+                }
+                echo '</div>';
+            }
+            ?>
         </div>
 
 
@@ -124,29 +160,6 @@
             echo("</div>");
         }
         ?>
-
-        <div class='comentario'>
-            <?php
-            foreach ($mensajes as $mensaje) {
-                echo '<i class="fa fa-quote-right" aria-hidden="true"></i>';
-                echo("Persona que comenta: '$mensaje[0]'");
-                echo ('<br>');
-                echo("Comentario: '$mensaje[4]'");
-                echo ('<br>');
-                echo("Fecha de comentario: '$mensaje[2]'");
-                echo ('<br>');
-                if (isset($_SESSION['username']) && $mensaje[0] == $_SESSION['username']) { //formulario para borrar el mensaje si es tuyo
-                    echo ('<form action="../controlador/main.php?origen=borrarMensaje" method="POST">');
-                    echo ("<input type=\"hidden\" name=\"id_mensaje\" value=\"$mensaje[1]\">");
-                    echo ("<input type=\"submit\" value='borrar mensaje'>");
-                    echo '<i class="fa fa-trash-o" aria-hidden="true"></i>';
-                    echo ("</form>");
-                }
-            }
-            echo '</div>';
-            echo '</div>';
-            ?>
-        </div>
     </div>
 
 </html>
