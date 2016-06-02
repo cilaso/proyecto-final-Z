@@ -264,3 +264,7 @@ h1{                         HAY QUE MODIFICAR EL H1 DE BOOTSTRAP
  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7fbfc', endColorstr='#f7fbfc',GradientType=0 ); 
  background-image: linear-gradient(top, #eff1f2 0% ,#f7fbfc 100%);   
   }
+  
+  .footer{
+      background-color: rosybrown;
+  }
