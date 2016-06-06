@@ -257,7 +257,7 @@ function insertarMensajeConImagen($mysqli, $remitente, $id_hilo, $mensaje, $nomb
 
 function pedirMensajes($mysqli, $id_hilo) { //devuelve los mensajes del hilo con id que le pases
     $resultado = $mysqli->query("SELECT * FROM mensaje WHERE id_hilo_perteneciente = '$id_hilo'");
-    
+     
     $mensajes = array();
 
     while ($fila = mysqli_fetch_array($resultado, MYSQLI_BOTH)) {
@@ -267,6 +267,16 @@ function pedirMensajes($mysqli, $id_hilo) { //devuelve los mensajes del hilo con
 
     return $mensajes;
 }
+
+function pedirHoraMensajes($mysqli, $id_mensaje) { //devuelve los mensajes del hilo con id que le pases
+    
+    $resultado = $mysqli->query("SELECT DATE_FORMAT(fecha_insercion,'%d/%m/%Y a las %H:%i') FROM mensaje WHERE id_mensaje = '$id_mensaje'");
+
+    $fecha_insercion = mysqli_fetch_array($resultado);
+    
+    return $fecha_insercion[0];
+}
+
 
 function borrarMensaje($mysqli, $id_mensaje) {
 
