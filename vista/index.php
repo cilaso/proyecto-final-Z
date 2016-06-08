@@ -5,8 +5,9 @@
         <meta charset="UTF-8">
         <meta content="Antonio y Sergio" name="author" />
         <meta content="Foro General" name="description" />
-        <meta content="etiqueta1, etiqueta2, etiqueta3" name="keywords" />
+        <meta content="foro, dudas, discusion, tema" name="keywords" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <link rel="stylesheet" type="text/css" href="../css/cssForo.css">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
@@ -14,22 +15,22 @@
 
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <script src="https://use.fontawesome.com/342ee199d9.js"></script>
+        
+        <!-- Hojas de estilo gneraler -->
+        <link rel="stylesheet" href="../css/cssHeader.css">
+        
+        <!-- Javascript para mostrar menú activo -->
         <script src="../js/javascriptForo.js" language="javascript" type="text/javascript"></script>
+        <script src="../js/javascriptHeader.js" language="javascript" type="text/javascript"></script>
 
         <!-- Hojas de estilo para el header -->
-        <!--<link rel="stylesheet" href="assets/demo.css">
-        <link rel="stylesheet" href="assets/header-fixed.css">-->
         <link rel="stylesheet" href="../css/cssHeader.css">
         <script src="../js/javascriptHeader.js" language="javascript" type="text/javascript"></script>
 
         <!-- Hojas de estilo para el footer -->
-        <!--<link rel="stylesheet" href="css/demo.css">
-        <link rel="stylesheet" href="css/footer-distributed-with-address-and-phones.css">-->
         <link rel="stylesheet" href="../css/cssFooter.css">
         <link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
-
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-
 
         <script>
             /*Para enlaces de menú con ruta relativa y sin parámetros:*/
@@ -48,10 +49,10 @@
 
             <div class="header-limiter">
 
-                <h1><a href="#">BlogG<span>obal</span></a></h1>
+                <h1><a href="#">Blog<span>Global</span></a></h1>
 
                 <nav>
-                    <a href="index.php" class="selected">Inicio</a>
+                    <a href="index.php">Inicio</a>
                     <a href="favoritos.php">Favoritos</a>
                     <a href="misHilos.php">Mis hilos</a>
                     <a href="buscarHilosForm.php">Buscar hilos</a>
@@ -119,8 +120,8 @@
                     echo("<td>'$filaFav[3]'</td>");          // Categoria
                     echo("<td>'$filaFav[1]'</td>");          // Asunto
                     echo("<td>'$filaFav[4]'</td>");          // Descripcion
-                    echo("<td>'$filaFav[7]'</td>");          // Likes
-                    echo("<td>'$filaFav[6]'</td>");          // Fecha creacion
+                    echo("<td>'$filaFav[6]'</td>");          // Likes
+                    echo("<td>'$filaFav[5]'</td>");          // Fecha creacion
                     echo("<td>'$filaFav[2]'</td>");          // Creador
                     echo('<td><a href="hilo.php?id_hilo=' . $filaFav[0] . '">Ir</a></td>'); // Boton ir al hilo
                     echo("</tr>");
@@ -152,8 +153,8 @@
                     echo("<td>'$filaNow[3]'</td>");
                     echo("<td>'$filaNow[1]'</td>");
                     echo("<td>'$filaNow[4]'</td>");
-                    echo("<td>'$filaNow[7]'</td>");
                     echo("<td>'$filaNow[6]'</td>");
+                    echo("<td>'$filaNow[5]'</td>");
                     echo("<td>'$filaNow[2]'</td>");
                     echo('<td><a href="hilo.php?id_hilo=' . $filaNow[0] . '">Ir</a></td>');
 
@@ -164,8 +165,6 @@
                 ?>
             </table>
         </div>
-
-        <!--</div>-->
 
         <footer class="footer-distributed">
 
@@ -178,24 +177,24 @@
                     <a href="favoritos.php">Favoritos</a> ·
                     <a href="misHilos.php">Mis hilos</a> ·
                     <a href="buscarHilosForm.php">Buscar hilos</a> ·
-                    <a href="#">Contact</a>        
+                    <a href="#">Contacto</a>        
                 </p>
 
-                <p class="footer-company-name">ForoEnterate</h3> &copy; 2016</p>
+                <p class="footer-company-name">BlogGlobal &copy; 2016</p>
             </div>
 
             <div class="footer-center">
                 <div>
                     <i class="fa fa-map-marker"></i>
-                    <p><span>c/ Milla del oro</span> Madrid, España</p>
+                    <p><span>c/ Arturo Soria nº32</span> Madrid, España</p>
                 </div>
                 <div>
                     <i class="fa fa-phone"></i>
-                    <p>+1 555 123456</p>
+                    <p>91 463 11 72</p>
                 </div>
                 <div>
                     <i class="fa fa-envelope"></i>
-                    <p><a href="mailto:support@company.com">support@company.com</a></p>
+                    <p><a href="mailto:support@blogglobal.com">support@bloggobal.com</a></p>
                 </div>
             </div>
 
@@ -203,7 +202,7 @@
 
                 <p class="footer-company-about">
                     <span>Sobre la compañia</span>
-                    Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+                    Espacio dedicado a exponer dudas, consejos, sobre cualquier temática, de cualquier tipo.
                 </p>
 
                 <div class="footer-icons">

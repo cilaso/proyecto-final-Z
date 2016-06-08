@@ -39,18 +39,6 @@
 
         </header>
         <div class="container contenedor">
-            <?php
-            echo "La fecha actual es " . date("d") . " del " . date("m") . " de " . date("Y");
-            echo '<i class="fa fa-themeisle fa-3x" aria-hidden="true"></i>';
-            echo '<br>';
-            ?>
-            <div id="cabecera"> <!--LOGO Y COSAS CHULAS-->
-                <ul id="menu" class="row"> <!--MENU DE ARRIBA TIPICO DE TODAS LAS WEBS-->
-                    <li class="col-md-3 boton"><a href="index.php">Inicio</a></li>
-                    <li class="col-md-3 boton"><a href="favoritos.php">Favoritos</a></li>
-                    <li class="col-md-3 boton"><a href="misHilos.php">Mis hilos</a></li>
-                    <li class="col-md-3 boton"><a href="buscarHilosForm.php">Buscar hilos</a></li>
-                </ul>
 
                 <!--PARTE DE ARRIBA A LA DERECHA TIPICA DE TODAS LAS WEBS CON LAS OPCIONES-->
                 <div class="row">
@@ -66,7 +54,7 @@
             <?php
             if ($_SESSION['misHilosPedidos'] == false) {
 
-                header("Location: ../controlador/main.php?origen=pedir_mis_hilos"); //llamada a la base de datos para las tablas de hilos
+                header("Location: ../controlador/main.php?origen=pedir_mis_hilos"); // Llamada a la base de datos para las tablas de hilos
             }
 
             $misHilos = $_SESSION['misHilos'];

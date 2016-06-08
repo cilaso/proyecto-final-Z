@@ -179,7 +179,7 @@ function comprobarHiloFavorito ($mysqli, $username, $id_hilo){ //comprueba si lo
     }else{
         return false;
     }
-    
+
 }
 
 function desmarcarHiloFavorito($mysqli, $username, $id_hilo) { //marcas un hilo como favorito tuyo
@@ -189,8 +189,7 @@ function desmarcarHiloFavorito($mysqli, $username, $id_hilo) { //marcas un hilo 
 
 function darLikeHilo($mysqli, $username, $id_hilo) { //marcas un hilo como like
     $mysqli->query("insert into likes values ('$username', '$id_hilo');");
-    $mysqli->query("UPDATE hilo SET likes = likes+1 WHERE id_hilo = '$id_hilo'");
-    
+    $mysqli->query("UPDATE hilo SET likes = likes+1 WHERE id_hilo = '$id_hilo'"); 
 }
 
 function desmarcarLikeHilo($mysqli, $username, $id_hilo) { //desmarcas un hilo como like tuyo
@@ -213,7 +212,6 @@ function comprobarLikeHilo($mysqli, $username, $id_hilo){ //comprueba si lo tien
 function buscarHilo($mysqli, $query){
     
     $resultado = $mysqli->query("$query");
-    
     
     $hilos = array();
 

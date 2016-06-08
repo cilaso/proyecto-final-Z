@@ -28,7 +28,7 @@ body{
     padding:  0.2%;
     /*  background-color: #CCC; */
     margin-top: 1%;
-    margin-bottom:  1%;
+    margin-bottom: 1%;
     z-index: 10;
     background:#fff;
     -webkit-box-shadow:0 0 40px rgba(0, 0, 0, 0.1) inset;
@@ -145,14 +145,13 @@ input[type="text"],input[type="password"]{
     background: #F1F1F1;
     
 }
-/*
-.fa-quote-right{
- color: #333333; /*Color del icono*
-background: #eeeeee; /*Fondo del icono*
-border: 1px solid #333333; /*Borde*
-font-size: 20px; /*Tamaño del icono*
+.hiloCeldaCreador{
+    margin-top: 1%;
+    border-left: 4px solid ROSYBROWN;
+    border-right: 4px solid ROSYBROWN;
+    border-top: 1px solid KHAKI;
+    border-bottom: 1px solid KHAKI; 
 }
-*/
 .creadorHilo{
     border: 1px solid #D1D1D1;
     background: #F1F1F1;
@@ -269,12 +268,6 @@ font-size: 20px; /*Tamaño del icono*
     margin: 0 1%;
 }
 
-/*
-h1{                         HAY QUE MODIFICAR EL H1 DE BOOTSTRAP
-    font-size: 1.8em;
-}*/
-
-
 #likeRojo{
     text-decoration:none; 
     text-align:center; 
@@ -314,55 +307,6 @@ h1{                         HAY QUE MODIFICAR EL H1 DE BOOTSTRAP
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7fbfc', endColorstr='#f7fbfc',GradientType=0 ); 
     background-image: linear-gradient(top, #eff1f2 0% ,#f7fbfc 100%);   
 }
-/*
-#footer{
-    background-image: url(../images/footImage.png);
-    background-repeat: repeat-x;
-    background-position: center bottom;
-    height: 280px;
-    clear: both;
-    margin: 0px;
-    padding: 20px 0px 0px;  
-    z-index: 1;
-} 
-#footRight {
-    float: right;
-    width: 400px;
-    padding-top: 140px;
-    text-align: right;
-}
-#footerWrap {
-    width: 900px;
-    margin-top: 3%;
-    margin-right: auto;
-    margin-bottom: 0px;
-    margin-left: 5%; 
-    padding-top: 20px;
-    color: #870000;
-    font-size: 12px;
-}
-#footerfoot {
-    color: #FFFFFF;
-    padding-top: 120px;
-    width: 450px;
-    float: left;
-    color: #999999;
-}
-#footer p {
-    color: #870000;
-    font-size: 12px;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-}
-#footerWrap p a {
-    color: #555555;
-    text-decoration: none;
-}
-#footerWrap #footerfoot a {
-    color: #FFFFFF;
-}
-*/
 
 #footer_top {
     height: 218px;
@@ -398,4 +342,16 @@ table {
 }
 #footer-nav {
     margin-top: -5px;
+}
+.footer-distributed{
+    margin-top: 0% !important;
+}
+/* Móviles en vertical --------------------------------------------------------------- */
+@media (max-width: 480px) { 
+    .fotoPerfil{
+        width: 80%;
+        height: 10%;
+        border: 1px solid green;
+        margin: 1%;
+    }
 }
