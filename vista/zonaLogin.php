@@ -5,7 +5,7 @@ $url = $porciones[0]; //url actual
 $url = substr($url, 1);
 $_SESSION['url'] = $url;
 
-if (isset($_SESSION['username'])) { //sesion iniciada
+if (isset($_SESSION['username'])) {     // SESION INICIADA
     ?>
 
     <div id="zonaLoginCon" class="row">
@@ -46,7 +46,16 @@ if (isset($_SESSION['username'])) { //sesion iniciada
             }
             echo("</div>"); /* CIERRE  ROW */
             echo("</div>"); /* CIERRE  ROW */
-        } else {                        //sesion no iniciada
+            
+        } else {                        //SESION NO INCIADA
+            
+            
+            if (isset($_REQUEST['mensaje'])) {
+                echo '<p>';
+                echo $_REQUEST['mensaje'];
+                echo '</p>';
+            }
+
             echo("<div id=\"zonaLoginDesc\" class=\"row\">");
             echo ('<div class="col-md-12">');
 

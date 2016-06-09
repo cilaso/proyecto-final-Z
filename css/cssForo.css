@@ -10,18 +10,6 @@ gobierno y sociedad
 información general
 informática e internet
 */ 
-/* 
-    Created on : 21-may-2016, 3:24:59
-    Author     : Sergio
-*/
-
-/*
-body{
-    background: url(../images/footer_top_bg.jpg) repeat-x left bottom;
-    min-width: 1040px;
-}
-*/
-
 /* Contenedor Principal*/
 .contenedor{
     border: 1px solid grey;
@@ -59,7 +47,6 @@ body{
     width: 100%;
     height: 20%;
     background-color: #dedede;
-    /*  margin: 0; */
     padding: 0;
     padding-right: 4.5%;
     margin-top: 2%;
@@ -71,6 +58,7 @@ body{
     background-color: yellow;
     margin-top: 2%;
     margin-left: 0;
+
 }
 .campos{
     width: 100%;
@@ -102,10 +90,6 @@ input[type="text"],input[type="password"]{
     width: 100%;
     height: 100%;
     padding: 0% 0%;
-    /* width: 90%;
-     height: 90%;
-     padding: 5% 5%;*/
-    /*  border-radius: 100%; */
 }
 
 /* Botones Menú */
@@ -143,7 +127,7 @@ input[type="text"],input[type="password"]{
     border-top: 1px solid #D1D1D1;
     border-bottom: 1px solid #D1D1D1;
     background: #F1F1F1;
-    
+
 }
 .hiloCeldaCreador{
     margin-top: 1%;
@@ -185,47 +169,49 @@ input[type="text"],input[type="password"]{
     width:  100%;
 }
 
-/* Estrellas para los Likes */
-.rating {
-    unicode-bidi: bidi-override;
-    direction: rtl;
-}
-.rating > span {
-    display: inline-block;
-    position: relative;
-    font-size: 100%;
-    float: left;
-}
-.rating > span:first-of-type:hover{
-    color: blue;
-}
-.rating > span:nth-of-type(2):hover{
-    color: darkred;
-}
-.rating > span:nth-of-type(3):hover{
-    color: blue;
-}
-.rating > span:nth-of-type(4):hover{
-    color: darkred;
-}
+/* CSS Likes */
 .nombreUsuario{
     padding-right: 30px;
     border-bottom:  #cccccc 1px solid;
     margin-left: 2%;
     text-align: center;
 }
+#likeNegro{
+    text-decoration:none; 
+    text-align:center; 
+    padding:0px 0px; 
+    border:none; 
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px; 
+    border-radius: 4px; 
+    font:18px Arial, Helvetica, sans-serif; 
+    font-weight:bold; 
+    color:#000000; 
+    background-color:#eff1f2; 
+    background-image: -moz-linear-gradient(top, #eff1f2 0%, #f7fbfc 100%); 
+    background-image: -webkit-linear-gradient(top, #eff1f2 0%, #f7fbfc 100%); 
+    background-image: -o-linear-gradient(top, #eff1f2 0%, #f7fbfc 100%); 
+    background-image: -ms-linear-gradient(top, #eff1f2 0% ,#f7fbfc 100%); 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7fbfc', endColorstr='#f7fbfc',GradientType=0 ); 
+    background-image: linear-gradient(top, #eff1f2 0% ,#f7fbfc 100%);   
+}
 
 /* Zona Registro */ 
-.contenedorRegistro{
-    margin-top: 10%;
-    margin-left: 27%;
+.contenedorRegistro{    
+    margin: 2% auto;
     background-color: graytext;
-    width: 35%; 
+    width: 70%; 
     height: 100%;
     text-align: center;
     /*   margin-left: auto;
        margin-right: auto; */
     color: golden;
+    opacity: 0.92;
+}
+.decoradoRegistro{
+      background-image: url(../images/wallhaven-383695.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
 }
 .fondoCrearHilo{
     background-image: url(../images/wallhaven-383981.jpg);
@@ -248,11 +234,13 @@ input[type="text"],input[type="password"]{
     margin-bottom: 2%;
 }
 .titularRegistroForm{
-
+letter-spacing: 3px;
 }
 .botonRegistro{
     width: 100%;
+    height: 20%;
     margin-bottom: 1%;
+    line-height: 4;
 }
 .campoRegistroHilo{
     color: goldenrod;
@@ -288,26 +276,136 @@ input[type="text"],input[type="password"]{
     background-image: linear-gradient(top, #eff1f2 0% ,#f7fbfc 100%);
 }
 
-#likeNegro{
-    text-decoration:none; 
-    text-align:center; 
-    padding:0px 0px; 
-    border:none; 
-    -webkit-border-radius:4px;
-    -moz-border-radius:4px; 
-    border-radius: 4px; 
-    font:18px Arial, Helvetica, sans-serif; 
-    font-weight:bold; 
-    color:#000000; 
-    background-color:#eff1f2; 
-    background-image: -moz-linear-gradient(top, #eff1f2 0%, #f7fbfc 100%); 
-    background-image: -webkit-linear-gradient(top, #eff1f2 0%, #f7fbfc 100%); 
-    background-image: -o-linear-gradient(top, #eff1f2 0%, #f7fbfc 100%); 
-    background-image: -ms-linear-gradient(top, #eff1f2 0% ,#f7fbfc 100%); 
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7fbfc', endColorstr='#f7fbfc',GradientType=0 ); 
-    background-image: linear-gradient(top, #eff1f2 0% ,#f7fbfc 100%);   
+/* CSS de la página de contacto*/
+.contact-form {
+    width: 846px;
+    padding: 15px;
+    margin: 1% auto;
+    position: relative;
+    background-color: #ffffff;
+    background-image: -webkit-gradient(linear, left top, right bottom, 
+        color-stop(5%,  #bfd1E7), color-stop(5%,  #ed5737),
+        color-stop(15%, #ed5737), color-stop(15%, #bfd1E7),
+        color-stop(25%, #bfd1E7), color-stop(25%, #2f57b7),
+        color-stop(35%, #2f57b7), color-stop(35%, #bfd1E7),
+        color-stop(45%, #bfd1E7), color-stop(45%, #ed5737),
+        color-stop(55%, #ed5737), color-stop(55%, #bfd1E7),
+        color-stop(65%, #bfd1E7), color-stop(65%, #2f57b7),
+        color-stop(75%, #2f57b7), color-stop(75%, #bfd1E7),
+        color-stop(85%, #bfd1E7), color-stop(85%, #ed5737),
+        color-stop(95%, #ed5737), color-stop(95%, #bfd1E7));
+    background-image: -webkit-repeating-linear-gradient(135deg, #ed5737 0, #ed5737 50px, transparent 50px, transparent 80px, #2f57b7 80px, #2f57b7 130px, transparent 130px, transparent 160px);
+    background-image:    -moz-repeating-linear-gradient(135deg, #ed5737 0, #ed5737 50px, transparent 50px, transparent 80px, #2f57b7 80px, #2f57b7 130px, transparent 130px, transparent 160px);
+    background-image:     -ms-repeating-linear-gradient(135deg, #ed5737 0, #ed5737 50px, transparent 50px, transparent 80px, #2f57b7 80px, #2f57b7 130px, transparent 130px, transparent 160px);
+    background-image:      -o-repeating-linear-gradient(135deg, #ed5737 0, #ed5737 50px, transparent 50px, transparent 80px, #2f57b7 80px, #2f57b7 130px, transparent 130px, transparent 160px);
+    background-image:         repeating-linear-gradient(135deg, #ed5737 0, #ed5737 50px, transparent 50px, transparent 80px, #2f57b7 80px, #2f57b7 130px, transparent 130px, transparent 160px);
+    -pie-background:          linear-gradient(135deg, 
+        #bfd1E7 5%,  #ed5737 5%,
+        #ed5737 15%, #bfd1E7 15%,
+        #bfd1E7 25%, #2f57b7 25%,
+        #2f57b7 35%, #bfd1E7 35%,
+        #bfd1E7 45%, #ed5737 45%,
+        #ed5737 55%, #bfd1E7 55%,
+        #bfd1E7 65%, #2f57b7 65%,
+        #2f57b7 75%, #bfd1E7 75%,
+        #bfd1E7 85%, #ed5737 85%,
+        #ed5737 95%, #bfd1E7 95%);
+    behavior: url(PIE.htc);
+    text-align: left;
+
+}
+.formulario {
+    overflow: hidden;
+    padding: 40px 20px;
+    background-color: #fff;
+}
+.form-input {
+    display: block;
+    height: 24px;
+    padding: 6px 10px;
+    margin-bottom: 20px;
+    font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    border-radius:         8px;
+    -moz-box-shadow:    inset 0 0 1px rgba(0, 0, 0, 0.7), 0 1px 0 rgba(255, 255, 255, 0.1);
+    -webkit-box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.7), 0 1px 0 rgba(255, 255, 255, 0.1);
+    box-shadow:         inset 0 0 1px rgba(0, 0, 0, 0.7), 0 1px 0 rgba(255, 255, 255, 0.1);
+    background-color: #646464;
+    -moz-box-shadow:    inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.7);
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.7);
+    box-shadow:         inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.7);
+    behavior: url(PIE.htc);
+    width: 320px;
+    background: #ededed;
+    border: 5px solid #dbdbdb;
+    color: #999;
+    position: relative;
+}
+textarea.form-input {
+    height: 200px;
+    overflow: auto;
+    width: 380px; 
+    position: relative;
+}
+label {
+    color: #444;
+    font-size: 15px;
+}
+label span {
+    color: #ff4141;
+    font-size: 11px;
+}
+.form-btn {
+    padding: 0 15px;
+    height: 30px;
+    font: bold 12px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-align: center;
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.7);
+    cursor: pointer;
+    border: 1px solid #0d3d6a;
+    background-color: #2F57B7;
+    clear: both;
+    float: right;
+}
+.form-btn:hover {
+    color: #8598C6;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.7);
+}
+.form-btn {
+    padding: 0 15px;
+    height: 30px;
+    font: bold 12px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-align: center;
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.7);
+    cursor: pointer;
+    border: 1px solid #0d3d6a;
+    background-color: #2F57B7;
+    clear: both;
+    float: right;
+}
+.form-btn:hover {
+    color: #8598C6;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.7);
+}
+.column:first-of-type {
+    float: left;
+    position: relative;
+}
+.column:last-of-type {
+    float: right;
+    margin: 0 0 20px 40px;
+}
+label {
+    color: #444;
+    font-size: 15px;
+}
+label span {
+    color: #ff4141;
+    font-size: 11px;
 }
 
+/* CSS footer pie de página*/
 #footer_top {
     height: 218px;
     width: 100%;
@@ -355,3 +453,7 @@ table {
         margin: 1%;
     }
 }
+
+
+
+

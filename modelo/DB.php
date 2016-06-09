@@ -111,6 +111,7 @@ function pedirHilosRecientes($mysqli) { //ultimos hilos creados
 }
 
 function pedirHiloPorId($mysqli, $id_hilo) { //ultimos hilos creados
+    
     $resultado = $mysqli->query("SELECT * FROM hilo WHERE id_hilo = '$id_hilo';");
 
     return $resultado;
@@ -222,6 +223,15 @@ function buscarHilo($mysqli, $query){
 
 
     return $hilos;
+}
+
+function adminHilo($mysqli, $id_Hilo) {
+    
+     $admin = $mysqli->query("SELECT admin FROM hilo WHERE id_Hilo = '$id_Hilo' ");
+     
+     $creador = mysqli_fetch_array($admin);
+     
+     return $creador[0];
 }
 
 function hiloConImagen($mysqli, $id_Hilo) {

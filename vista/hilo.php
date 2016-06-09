@@ -16,10 +16,10 @@
 
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <script src="https://use.fontawesome.com/342ee199d9.js"></script>
-        
+
         <!-- Hojas de estilo gneraler -->
         <link rel="stylesheet" href="../css/cssHeader.css">
-        
+
         <!-- Javascript para mostrar menú activo -->
         <script src="../js/javascriptForo.js" language="javascript" type="text/javascript"></script>
         <script src="../js/javascriptHeader.js" language="javascript" type="text/javascript"></script>
@@ -52,6 +52,10 @@
     $hilo = mysqli_fetch_array($resultadoHilo);
 
     $mensajes = pedirMensajes($mysqli, $id_hilo); //comentarios del hilo actual
+    
+    $username = adminHilo($mysqli,  $id_hilo );
+    $ruta_imagen_creador = usuarioConImagen($mysqli, $username );
+
     ?>
 
     <header class="header-fixed">
@@ -65,20 +69,17 @@
                 <a href="favoritos.php">Favoritos</a>
                 <a href="misHilos.php">Mis hilos</a>
                 <a href="buscarHilosForm.php">Buscar hilos</a>
-                <a href="#">Contacto</a>
+                <a href="contacto.php">Contacto</a>
             </nav>
 
         </div>
 
     </header>
 
-    <div class="container contenedor">
+    <!-- Es necesario este elemento para evitar que el contenido de la página salte -->
+    <div class="header-fixed-placeholder"></div>
 
-        <?php
-        /*    echo "La fecha actual es " . date("d") . " del " . date("m") . " de " . date("Y");
-          echo '<i class="fa fa-themeisle fa-3x" aria-hidden="true"></i>';
-          echo '<br>'; */
-        ?> 
+    <div class="container contenedor">
 
         <div class="row">
             <div class="col-md-8"></div>
@@ -91,7 +92,7 @@
         <div class="row hiloCeldaCreador">
             <div class="col-md-4 hiloComentario">
                 <div class="posicion">Propietario: <?php echo $hilo[2]; ?></div>
-                <div class="posicion"><?php echo "<img src='../uploads/" . $_SESSION['rutaImagen'] . "'/>"; ?></div>
+                <div class="posicion"><?php echo "<img src='../uploads/" . $ruta_imagen_creador . "'/>"; ?></div>
                 <?php
                 //                $_SESSION["id_hilo"] = $hilo[0];
 //                if (!isset($_SESSION['rutaImagen'])) {

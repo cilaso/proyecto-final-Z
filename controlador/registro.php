@@ -11,17 +11,6 @@ $apellidos = $_REQUEST['apellidos'];
 $correo = $_REQUEST['correo'];
 $fecha_nacimiento = $_REQUEST['cumpleanios'];
 
-/*
-echo $username . " USUARIO <br>";
-echo $password . " PASSWORD <br>";
-echo $contrasenia2 . " PASSWORD2 <br>";
-echo $nombre . " NOMBRE <br>";
-echo $apellidos . " APELLIDOS <br>";
-echo $correo . " CORREO <br>";
-echo $fecha_nacimiento . " FECHA NACIMIENTO <br>";
-die();
- */
-
 // Validamos que las 2 contraseñas sean iguales
 if ($password == $contrasenia2) {
     
@@ -34,10 +23,10 @@ if ($password == $contrasenia2) {
 
         if ($resultado) {
             $_SESSION['usuarioRegistrado'] = "Se ha registrado con éxito";
-            header("Location: ../vista/index.php");
+            header('Location: ../vista/index.php?mensaje="Se ha registrado con éxito"');
         } else {
             $_SESSION['usuarioRegistrado'] = 'Se ha producido un error al registrarse';
-            header('Location: ../vista/index.php');
+            header('Location: ../vista/index.php?mensaje="Se ha registrado con éxito"');
         }
     } else {
 
@@ -52,32 +41,22 @@ if ($password == $contrasenia2) {
             $nombre_imagen = date("d") . date("m") . date("Y") . date("H") . date("i") . date("s") . basename($_FILES['imagen']['name']);
             $imagen_subida = $dir_destino . $nombre_imagen;
             
-            
-            /*
-             echo $imagen_subida;
-             die();
-             */
-            
             if (is_uploaded_file($_FILES['imagen']['tmp_name'])) {
                 if (move_uploaded_file($_FILES['imagen']['tmp_name'], $imagen_subida)) {
                     $resultado = registrarUsuarioConImagen($mysqli, $username, $password, $nombre, $apellidos, $correo, $fecha_nacimiento, $nombre_imagen);
                 } else {
-                     echo 'NO SE HA PODIDO MOVER NOSEEE';
-                     die();
                     $_SESSION['usuarioRegistrado'] = "Posible ataque del archivo subido: nombre del archivo '" . $_FILES['imagen']['tmp_name'];
                 }
             } else {
-                 echo 'NO ES MOVIBLE';
-                 die();
                 $_SESSION['usuarioRegistrado'] = "Posible ataque del archivo subido: ";
             }
 
             if ($resultado) {
                 $_SESSION['usuarioRegistrado'] = "Se ha registrado con éxito";
-                header('Location: ../vista/index.php');
+                header('Location: ../vista/index.php?mensaje="Se ha registrado con éxito"');
             } else {
                 $_SESSION['usuarioRegistrado'] = $_SESSION['usuarioRegistrado'] . ". Se ha producido un error al registrarse";
-                header('Location: ../vista/index.php');
+                header('Location: ../vista/index.php?mensaje="Se ha registrado con éxito"');
             }
         } else {
             $_SESSION['usuarioRegistrado'] = "Archivo no permitido, es tipo de archivo prohibido o excede el tamano de $limite_kb Kilobytes";

@@ -8,17 +8,17 @@
         <meta content="foro, dudas, discusion, tema" name="keywords" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        
+
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <script src="https://use.fontawesome.com/342ee199d9.js"></script>
-        
+
         <!-- Hojas de estilo general -->
         <link rel="stylesheet" type="text/css" href="../css/cssForo.css">
-        
+
         <!-- Javascript para mostrar menú activo -->
         <script src="../js/javascriptForo.js" language="javascript" type="text/javascript"></script>
         <script src="../js/javascriptHeader.js" language="javascript" type="text/javascript"></script>
@@ -35,9 +35,9 @@
         <script>
             /*Para enlaces de menú con ruta relativa y sin parámetros:*/
             $(document).ready(function () {
-            url_completa = location.href; //URL de la pagina actual
-            url_incio = url_completa.lastIndexOf("/");
-            pagina_actual = url_completa.slice(url_incio + 1); //Extraemos el nombre de la pagina
+                url_completa = location.href; //URL de la pagina actual
+                url_incio = url_completa.lastIndexOf("/");
+                pagina_actual = url_completa.slice(url_incio + 1); //Extraemos el nombre de la pagina
                 // Asignamos la clase llamada "activo" 
                 $("#menu li a[href='" + pagina_actual + "']").parent().addClass("activo");
             });
@@ -66,113 +66,27 @@
         <!-- Es necesario este elemento para evitar que el contenido de la página salte -->
         <div class="header-fixed-placeholder"></div>
 
-        <!--<div class="container contenedor">-->
-        <?php
-        session_start();
-        if ($_SESSION['hilosPedidos'] == false) {
-            header("Location: ../controlador/main.php?origen=pedir_hilos"); //llamada a la base de datos para las tablas de hilos
-        }
-        ?>
+        <form action="" class="contact-form">				
+            <div class="formulario">
+                <div class="column">
+                    <label for="nombre">Nombre <span>(requerido)</span></label>
+                    <input type="text" name="nombre" class="form-input" required="required"/>
 
-        <div class="row">
-            <div class="col-md-8" >
-                 <?php if(isset($_REQUEST['mensaje'])){
-                    echo '<p>';
-                    echo $_REQUEST['mensaje'];
-                    echo '</p>';
-                 }
-                
-                 ?>
-            </div>
-            <div class="col-md-4" >
+                    <label for="email">Email <span>(requerido)</span></label>
+                    <input type="email" name="email" class="form-input" required="required"/>
 
-                <?php
-                if (isset($_REQUEST["mensaje"])) {
-                    $mensaje = $_REQUEST["mensaje"];
-                    echo '<p>' . $mensaje . '</p>';
-                    var_dump($mensaje);
-                }
+                    <label for="asunto">Asunto</label>
+                    <input type="text" name="asunto" class="form-input" />
+                </div>
 
-                if (isset($_SESSION['usuarioRegistrado'])) {
-                    echo '<div>' . $_SESSION['usuarioRegistrado'] . '</div>';
-                }
+                <div class="column">
+                    <label for="mensaje">Mensaje <span>(requerido)</span></label>
+                    <textarea name="mensaje" class="form-input" required="required"></textarea>
+                </div>				
 
-
-                /*  <!--PARTE DE ARRIBA A LA DERECHA TIPICA DE TODAS LAS WEBS CON LAS OPCIONES--> */
-
-                include ("zonaLogin.php");
-                ?>
-
-            </div>
-        </div>
-
-        <?php
-        //TABLA DE HILOS FAVORITOS
-        $hiloFav = array();
-        $hiloFav = $_SESSION['hiloFav'];
-        ?>
-        <div class="tablaHilos  table-responsive">
-            <h1>Hilos mas populares</h1>
-            <table id="hilosFavoritos" class="table table-striped">
-                <tr>
-                    <th>Categoria</th>
-                    <th>Asunto</th>
-                    <th>Descripcion</th>
-                    <th>Likes</th>
-                    <th>Fecha de creacion</th>
-                    <th>Creador</th>
-                    <th></th>
-                </tr>
-                <?php
-                foreach ($hiloFav as $filaFav) {
-                    echo("<td>'$filaFav[3]'</td>");          // Categoria
-                    echo("<td>'$filaFav[1]'</td>");          // Asunto
-                    echo("<td>'$filaFav[4]'</td>");          // Descripcion
-                    echo("<td>'$filaFav[6]'</td>");          // Likes
-                    echo("<td>'$filaFav[5]'</td>");          // Fecha creacion
-                    echo("<td>'$filaFav[2]'</td>");          // Creador
-                    echo('<td><a href="hilo.php?id_hilo=' . $filaFav[0] . '">Ir</a></td>'); // Boton ir al hilo
-                    echo("</tr>");
-                }
-                ?>
-            </table>
-        </div>
-        <?php
-        //TABLA DE HILOS RECIENTES
-
-        $hiloNow = $_SESSION['hiloNow'];
-        ?>
-        <div class="tablaHilos  table-responsive">
-            <h1>Hilos mas recientes</h1>    
-            <table id="hilosRecientes" class="table table-hover">
-                <tr>
-                    <th>Categoria</th>
-                    <th>Asunto</th>
-                    <th>Descripcion</th>
-                    <th>Likes</th>
-                    <th>Fecha de creación</th>
-                    <th>Creador</th>
-                    <th></th>
-                </tr>
-                <?php
-                foreach ($hiloNow as $filaNow) {
-                    echo("<tr>");
-
-                    echo("<td>'$filaNow[3]'</td>");
-                    echo("<td>'$filaNow[1]'</td>");
-                    echo("<td>'$filaNow[4]'</td>");
-                    echo("<td>'$filaNow[6]'</td>");
-                    echo("<td>'$filaNow[5]'</td>");
-                    echo("<td>'$filaNow[2]'</td>");
-                    echo('<td><a href="hilo.php?id_hilo=' . $filaNow[0] . '">Ir</a></td>');
-
-                    echo("</tr>");
-                }
-
-                $_SESSION['hilosPedidos'] = false;
-                ?>
-            </table>
-        </div>
+                <input class="form-btn" type="submit" value="Enviar Mensaje" />
+            </div>		
+        </form>
 
         <footer class="footer-distributed">
 
