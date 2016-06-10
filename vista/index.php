@@ -76,7 +76,7 @@
 
         <div class="row">
             <div class="col-md-8" >
-                 <?php if(isset($_REQUEST['mensaje'])){
+        <?php if(isset($_REQUEST['mensaje'])){
                     echo '<p>';
                     echo $_REQUEST['mensaje'];
                     echo '</p>';
@@ -86,7 +86,7 @@
             </div>
             <div class="col-md-4" >
 
-                <?php
+        <?php
                 if (isset($_REQUEST["mensaje"])) {
                     $mensaje = $_REQUEST["mensaje"];
                     echo '<p>' . $mensaje . '</p>';
@@ -96,10 +96,9 @@
                 if (isset($_SESSION['usuarioRegistrado'])) {
                     echo '<div>' . $_SESSION['usuarioRegistrado'] . '</div>';
                 }
-
-
-                /*  <!--PARTE DE ARRIBA A LA DERECHA TIPICA DE TODAS LAS WEBS CON LAS OPCIONES--> */
-
+                ?>
+                <!--PARTE DE ARRIBA A LA DERECHA TIPICA DE TODAS LAS WEBS CON LAS OPCIONES-->
+                <?php
                 include ("zonaLogin.php");
                 ?>
 
@@ -123,7 +122,7 @@
                     <th>Creador</th>
                     <th></th>
                 </tr>
-                <?php
+        <?php
                 foreach ($hiloFav as $filaFav) {
                     echo("<td>'$filaFav[3]'</td>");          // Categoria
                     echo("<td>'$filaFav[1]'</td>");          // Asunto
@@ -154,7 +153,7 @@
                     <th>Creador</th>
                     <th></th>
                 </tr>
-                <?php
+        <?php
                 foreach ($hiloNow as $filaNow) {
                     echo("<tr>");
 

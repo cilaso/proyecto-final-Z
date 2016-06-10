@@ -1,8 +1,8 @@
 <?php
 
 //CONEXION CON LA BASE DE DATOS 
-//$mysqli = new mysqli("192.168.1.177", "tony", "tony", "foro_db");  // PC SOAINT TONY
-$mysqli = new mysqli("192.168.1.146", "root", "root", "foro_db");    // PC SOAINT SERGIO
+$mysqli = new mysqli("192.168.1.177", "tony", "tony", "foro_db");  // PC SOAINT TONY
+//$mysqli = new mysqli("192.168.1.146", "root", "root", "foro_db");    // PC SOAINT SERGIO
 //$mysqli = new mysqli("192.168.1.238", "root", "root", "foro_db");  // PC CASA SERGIO
 
 
@@ -56,11 +56,7 @@ function usuarioConImagen($mysqli, $username) {
 
     $ruta_imagen = mysqli_fetch_array($resultado);
 
-//    if ($ruta_imagen[0] == NULL) {
-//        return "no-avatar.png";
-//    } else {
         return $ruta_imagen[0];
-//    }
 }
 
 function confirmarUsuario($mysqli, $pass, $username){

@@ -35,15 +35,16 @@ if (isset($_SESSION['username'])) {     // SESION INICIADA
                     </div>
                 </div>
             </div>
-            <!--</div>-->
-            <?php
+<?php
             if (!isset($_SESSION['rutaImagen'])) {
                 header('Location: ../controlador/main.php?origen=consultarImagen');
+                
             } else {
                 echo ('<div class="col-md-5 divFoto">');
                 echo "<img src='../uploads/" . $_SESSION['rutaImagen'] . "' class=fotoPerfil />";
                 echo ('</div>');
             }
+            
             echo("</div>"); /* CIERRE  ROW */
             echo("</div>"); /* CIERRE  ROW */
             
